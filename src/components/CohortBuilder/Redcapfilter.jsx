@@ -24,8 +24,8 @@ RedcapFilter.propTypes = {
     type: PropTypes.string,
     name: PropTypes.string
   }).isRequired,
-  remove: PropTypes.function.isRequired,
-  fetch: PropTypes.functoin.isRequired
+  remove: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired
 }
 
 export default RedcapFilter

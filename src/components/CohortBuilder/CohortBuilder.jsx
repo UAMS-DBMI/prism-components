@@ -6,6 +6,7 @@ import { useFetch } from './useFetch'
 import DataLogo from './data_logo.svg'
 import FilesLogo from './files_logo.svg'
 import PersonLogo from './person_logo.svg'
+import PropTypes from 'prop-types'
 
 function CategoryTableRow (props) {
   return (
@@ -14,6 +15,14 @@ function CategoryTableRow (props) {
       <td>{props.data.label}</td>
     </tr>
   )
+}
+
+CategoryTableRow.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string,
+    label: PropTypes.label
+  }).isRequired,
+  added: PropTypes.func
 }
 
 function TermTableRow (props) {
@@ -26,12 +35,20 @@ function TermTableRow (props) {
   )
 }
 
+TermTableRow.propTypes = {
+  category: PropTypes.string,
+  label: PropTypes.string,
+  definition: PropTypes.string,
+  value: PropTypes.string,
+  added: PropTypes.func
+}
+
 function FilterBox (props) {
   const [showBox, setShowBox] = useState(false)
   const [textFilter, setTextFilter] = useState('')
 
   const escFunction = useCallback((event) => {
-    if (event.keyCode === 27) clear_all()
+    if (event.keyCode === 27) clearAll()
     //    if(event.keyCode === 13) try_enter();
   }, [])
 
@@ -43,18 +60,18 @@ function FilterBox (props) {
     }
   }, [escFunction])
 
-  function added (category, uri) {
+  const added = (category, uri) => {
     setShowBox(false)
     setTextFilter('')
     props.added(category, uri)
   }
 
-  function clear_all () {
+  function clearAll () {
     setTextFilter('')
     setShowBox(false)
   }
 
-  const category_filters = props.data.map(row =>
+  const categoryFilters = props.data.map(row =>
     <CategoryTableRow data={row} key={row.name} added={added} />
   )
 
@@ -109,7 +126,7 @@ function FilterBox (props) {
             </span>
           </div>
           <div className='filter_results_container' style={{ display: (showBox ? 'flex' : 'none') }}>
-            <button style={{ alignSelf: 'flex-end' }} onClick={() => clear_all()}>Close</button>
+            <button style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()}>Close</button>
             <div className='filter_list'>
               <table className='filter_table'>
                 <thead>
@@ -119,13 +136,13 @@ function FilterBox (props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {category_filters}
+                  {categoryFilters}
                 </tbody>
               </table>
             </div>
           </div>
           <div className='filter_results_container' style={{ display: (textFilter !== '' ? 'flex' : 'none') }}>
-            <button style={{ alignSelf: 'flex-end' }} onClick={() => clear_all()}>Close</button>
+            <button style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()}>Close</button>
             <div className='filter_list'>
               <table className='filter_table'>
                 <thead>
@@ -147,6 +164,18 @@ function FilterBox (props) {
   )
 }
 
+FilterBox.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    added: PropTypes.func.isRequired,
+    api: PropTypes.string,
+    choices: PropTypes.array.isRequired,
+    definition: PropTypes.string
+  })).isRequired,
+  added: PropTypes.func.isRequired,
+  must: PropTypes.string.isRequired
+}
+
 function CohortBuilder () {
   const [mustFilters, setMustFilters] = useState([])
   const [cannotFilters, setCannotFilters] = useState([])
@@ -165,14 +194,14 @@ function CohortBuilder () {
   if (config === null || metadata === null) {
     return <span>...loading...</span>
   }
-  if (config.detail == 'Not Found') {
+  if (config.detail === 'Not Found') {
     return <span>Error loading config</span>
   }
-  if (metadata.detail == 'Not Found') {
+  if (metadata.detail === 'Not Found') {
     return <span>Error loading config</span>
   }
 
-  function reset_all () {
+  function resetAll () {
     setMustFilters([])
     setCannotFilters([])
     setMustCohort({})
@@ -187,42 +216,42 @@ function CohortBuilder () {
 
   function displayCohort () {
     setShowCohort(!showCohort)
-    if (!showCohort) fetch_all(currentCohort)
+    if (!showCohort) fetchAll(currentCohort)
   }
 
-  function add_must_filter (category, uri) {
+  const addMustFilter = (category, uri) => {
     if (mustFilters.indexOf(category) >= 0) return
     const newFilters = mustFilters.slice()
     newFilters.push(category)
     setMustFilters(newFilters)
   }
 
-  function remove_must_filter (name) {
+  const removeMustFilter = (name) => {
     const newFilters = mustFilters.filter((x) => x !== name)
     setMustFilters(newFilters)
     const newCohort = { ...mustCohort }
     delete newCohort[name]
     setMustCohort(newCohort)
-    update_current_cohort(newCohort, cannotCohort)
+    updateCurrentCohort(newCohort, cannotCohort)
   }
 
-  function add_cannot_filter (category, uri) {
+  const addCannotFilter = (category, uri) => {
     if (cannotFilters.indexOf(category) >= 0) return
     const newFilters = cannotFilters.slice()
     newFilters.push(category)
     setCannotFilters(newFilters)
   }
 
-  function remove_cannot_filter (name) {
+  const removeCannotFilter = (name) => {
     const newFilters = cannotFilters.filter((x) => x !== name)
     setCannotFilters(newFilters)
     const newCohort = { ...cannotCohort }
     delete newCohort[name]
     setCannotCohort(newCohort)
-    update_current_cohort(mustCohort, newCohort)
+    updateCurrentCohort(mustCohort, newCohort)
   }
 
-  function get_data (name) {
+  function getData (name) {
     for (const row of config) {
       if (row.name === name) {
         return row
@@ -234,7 +263,7 @@ function CohortBuilder () {
     return new Set([...a].filter(i => b.has(i)))
   }
 
-  function update_current_cohort (mustCohort, cannotCohort) {
+  function updateCurrentCohort (mustCohort, cannotCohort) {
     if (mustCohort.length === 0) {
       setCurrentCohort([])
       setShowCohort(false)
@@ -256,24 +285,24 @@ function CohortBuilder () {
     setCurrentCohort(finalCohort)
     setShowCohort(false)
     setAllData([])
-    // fetch_all(finalCohort);
+    // fetchAll(finalCohort);
   }
 
-  function add_must_cohort (name, patient_ids) {
+  const addMustCohort = (name, patientIds) => {
     const newMustCohort = { ...mustCohort }
-    newMustCohort[name] = patient_ids
+    newMustCohort[name] = patientIds
     setMustCohort(newMustCohort)
-    update_current_cohort(newMustCohort, cannotCohort)
+    updateCurrentCohort(newMustCohort, cannotCohort)
   }
 
-  function add_cannot_cohort (name, patient_ids) {
+  const addCannotCohort = (name, patientIds) => {
     const newCannotCohort = { ...cannotCohort }
-    newCannotCohort[name] = patient_ids
+    newCannotCohort[name] = patientIds
     setCannotCohort(newCannotCohort)
-    update_current_cohort(mustCohort, newCannotCohort)
+    updateCurrentCohort(mustCohort, newCannotCohort)
   }
 
-  async function fetch_all (currentCohort) {
+  async function fetchAll (currentCohort) {
     setFetching(true)
     setAllData([])
     const url = '/api/data?'
@@ -297,35 +326,35 @@ function CohortBuilder () {
   dParams.set('patient_ids', currentCohort.join(','))
   dParams.set('downloadFile', cohortName)
   const downloadLink = dUrl + dParams
-  const disable_download = downloadLink.length > 7000
+  const disableDownload = downloadLink.length > 7000
 
   const mustFilterBoxes = mustFilters.map(row =>
-    <RedcapFilter data={get_data(row)} key={row} remove={remove_must_filter} fetch={add_must_cohort} />
+    <RedcapFilter data={getData(row)} key={row} remove={removeMustFilter} fetch={addMustCohort} />
   )
 
   const cannotFilterBoxes = cannotFilters.map(row =>
-    <RedcapFilter data={get_data(row)} key={row} remove={remove_cannot_filter} fetch={add_cannot_cohort} />
+    <RedcapFilter data={getData(row)} key={row} remove={removeCannotFilter} fetch={addCannotCohort} />
   )
 
   const params = new URLSearchParams()
   params.set('PatientCriteria', currentCohort.join(','))
-  const nbia_link = 'https://nbia.cancerimagingarchive.net/nbia-search/?' + params
-  // const nbia_link = 'https://portal.aries.uams.edu/nbia-search/?' + params;
+  const nbiaLink = 'https://nbia.cancerimagingarchive.net/nbia-search/?' + params
+  // const nbiaLink = 'https://portal.aries.uams.edu/nbia-search/?' + params;
 
   const allFeatures = metadata.features.map((feature) =>
     <th key={feature}>{feature.substr(18)}</th>
   )
 
-  function x_from_features (all_features, my_features) {
-    return all_features.map((feature) => {
-      const x = my_features.indexOf(feature) >= 0
+  function xFromFeatures (allFeatures, myFeatures) {
+    return allFeatures.map((feature) => {
+      const x = myFeatures.indexOf(feature) >= 0
 
       return <td key={feature} className='col_feature'>{x ? 'X' : ''}</td>
     }
     )
   }
 
-  const concept_count = config.reduce(function (sum, feature) {
+  const conceptCount = config.reduce(function (sum, feature) {
     if (Object.keys(feature).includes('choices')) {
       return sum + feature.choices.length
     } else {
@@ -357,7 +386,7 @@ function CohortBuilder () {
               <h4>Concepts</h4>
               <div className='collection_icon_row'>
                 <img className='collection_icons' src={DataLogo} alt='Data Icon' />
-                <span>{concept_count}</span>
+                <span>{conceptCount}</span>
               </div>
             </div>
           </div>
@@ -371,7 +400,7 @@ function CohortBuilder () {
         <div className='header_section' style={{ flexGrow: 0 }}>
           <h2 className=''>Current Cohort - {currentCohort.length} subjects</h2>
           <div className='row_flex'>
-            <button className='tallButton' onClick={() => reset_all()}>
+            <button className='tallButton' onClick={() => resetAll()}>
               <svg version='1.1' viewBox='0 0 70 70' height='3em' with='3em'>
                 <g>
                   <g fill='#555753'>
@@ -384,7 +413,7 @@ function CohortBuilder () {
             </button>
             <button
               className='tallButton'
-              disabled={currentCohort.length == 0}
+              disabled={currentCohort.length === 0}
               onClick={() => displayCohort()}
             >
               <svg className='filter_button' viewBox='0 0 490 490'>
@@ -395,7 +424,7 @@ function CohortBuilder () {
             <a style={{ textDecoration: 'none' }} href={downloadLink}>
               <button
                 className='tallButton'
-                disabled={currentCohort.length == 0}
+                disabled={currentCohort.length === 0}
               >
                 <svg version='1.1' viewBox='0 0 20 20' height='2em' with='2em'>
                   <path
@@ -410,8 +439,8 @@ function CohortBuilder () {
                 <span>Download CSV ({currentCohort.length})</span>
               </button>
             </a>
-            <a href={nbia_link} style={{ textDecoration: 'none' }} target='_'>
-              <button disabled={currentCohort.length == 0 || disable_download} className='tallButton'>
+            <a href={nbiaLink} style={{ textDecoration: 'none' }} target='_'>
+              <button disabled={currentCohort.length === 0 || disableDownload} className='tallButton'>
                 <svg
                   fill='currentColor'
                   viewBox='0 0 16 16'
@@ -427,56 +456,65 @@ function CohortBuilder () {
                     d='M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z'
                   />
                 </svg>
-                <span>{disable_download ? 'Too Many Subjects' : 'Browse Files'}</span>
+                <span>{disableDownload ? 'Too Many Subjects' : 'Browse Files'}</span>
               </button>
             </a>
           </div>
         </div>
       </header>
       {
+        /* eslint-disable react/jsx-indent */
+        /* eslint-disable indent */
         (showCollections === true)
           ? <div className='collection_table'>
-            <table>
-              <thead>
-                <tr>
-                  <th>Collection</th>
-                  <th>Description</th>
-                  <th>Count</th>
-                  {allFeatures}
-                </tr>
-              </thead>
-              <tbody>
-                {metadata.collections.map((col) =>
-                  <tr key={col.link}>
-                    <td><a href={col.link}>{col.name}</a></td>
-                    <td>{col.desc}</td>
-                    <td>{col.count}</td>
-                    {x_from_features(metadata.features, col.features)}
+              <table>
+                <thead>
+                  <tr>
+                    <th>Collection</th>
+                    <th>Description</th>
+                    <th>Count</th>
+                    {allFeatures}
                   </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {metadata.collections.map((col) =>
+                    <tr key={col.link}>
+                      <td><a href={col.link}>{col.name}</a></td>
+                      <td>{col.desc}</td>
+                      <td>{col.count}</td>
+                      {xFromFeatures(metadata.features, col.features)}
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           : <></>
+          /* eslint-enable react/jsx-indent */
+          /* eslint-enable indent */
       }
       {
+        /* eslint-disable react/jsx-indent */
+        /* eslint-disable indent */
         (showCohort === true)
           ? <div className='currentCohort'>
             {fetching
               ? <span>fetching...</span>
-              : <><h3>Sample Records</h3>
-                <DataTable data={allData} />
+              : <>
+                  <h3>Sample Records</h3>
+                  <DataTable data={allData} />
                 </>}
-          </div>
+            </div>
           : <></>
+          /* eslint-enable react/jsx-indent */
+          /* eslint-enable indent */
       }
       <div className='filters'>
         <div className='filter_item_container'>
-          <FilterBox must='Inclusion' data={config} added={add_must_filter} />
+          <FilterBox must='Inclusion' data={config} added={addMustFilter} />
           {mustFilterBoxes}
         </div>
         <div className='filter_item_container'>
-          <FilterBox must='Exclusion' data={config} added={add_cannot_filter} />
+          <FilterBox must='Exclusion' data={config} added={addCannotFilter} />
           {cannotFilterBoxes}
         </div>
       </div>

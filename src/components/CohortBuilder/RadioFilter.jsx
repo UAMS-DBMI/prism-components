@@ -82,7 +82,7 @@ function RadioFilter (props) {
     )
   }
 
-  function bar_boxes (choices, max) {
+  function barBoxes (choices, max) {
     return Object.keys(choices).map((choice) =>
       <tr key={choice}>
         <label title={choice}>
@@ -94,10 +94,17 @@ function RadioFilter (props) {
           />
           {choices[choice].label}
         </label>
-        {choice in data
+        {
+          /* eslint-disable react/jsx-indent */
+          /* eslint-disable indent */
+          (choice in data)
           ? <td style={{ '--size': 'calc(' + data[choice].length + '/' + max + ')' }}>
             {data[choice].length}
-            </td> : <></>}
+            </td>
+          : <></>
+          /* eslint-enable react/jsx-indent */
+          /* eslint-enable indent */
+        }
       </tr>
     )
   }
@@ -119,7 +126,7 @@ function RadioFilter (props) {
     input = (
       <table className='my-charts-css bar reverse'>
         <tbody>
-          {bar_boxes(filters, max)}
+          {barBoxes(filters, max)}
         </tbody>
       </table>)
   }
@@ -158,8 +165,8 @@ RadioFilter.propTypes = {
     api: PropTypes.string,
     choices: PropTypes.array
   }).isRequired,
-  remove: PropTypes.function.isRequired,
-  fetch: PropTypes.function.isRequired
+  remove: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired
 }
 
 export default RadioFilter

@@ -10,12 +10,12 @@ function NumberRangeFilter (props) {
   const [fetching, setFetching] = useState(null)
   const [disableButton, setDisableButton] = useState(false)
 
-  async function fetchData () {
+  const fetchData = async () => {
     setDisableButton(true)
     setFetching(true)
     const url = '/api/data/' + props.data.api + '?'
     const params = new URLSearchParams()
-    if (props.data.api == 'raw-calc') {
+    if (props.data.api === 'raw-calc') {
       params.set('name', props.data.name)
     }
     if (greaterThan !== '') params.set('min', greaterThan)
@@ -32,16 +32,14 @@ function NumberRangeFilter (props) {
   }
 
   let summary = <></>
-  let total_count = ''
+  let totalCount = ''
   if (data !== null) {
-    let patient_count = 0
+    let patientCount = 0
     for (var col in data) {
-      patient_count += data[col].length
+      patientCount += data[col].length
     }
-    total_count = patient_count + ' total subjects'
-    summary = <div>
-      <BarChart data={data} />
-    </div>
+    totalCount = patientCount + ' total subjects'
+    summary = <div><BarChart data={data} /></div>
   }
 
   return (
@@ -78,7 +76,7 @@ function NumberRangeFilter (props) {
       <div className='fetch-button'>
         <button onClick={fetchData} disabled={disableButton}>Fetch Data</button>
         {fetching === true ? <span>...</span> : <></>}
-        <span>{total_count}</span>
+        <span>{totalCount}</span>
       </div>
       <div>{summary}</div>
     </div>
@@ -91,8 +89,8 @@ NumberRangeFilter.propTypes = {
     label: PropTypes.string,
     api: PropTypes.string
   }).isRequired,
-  remove: PropTypes.function.isRequired,
-  fetch: PropTypes.function.isRequired
+  remove: PropTypes.func.isRequired,
+  fetch: PropTypes.func.isRequired
 }
 
 export default NumberRangeFilter

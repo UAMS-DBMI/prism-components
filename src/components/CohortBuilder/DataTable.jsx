@@ -1,10 +1,8 @@
 import React from 'react'
 import './DataTable.css'
+import PropTypes from 'prop-types'
 
 function DataTable (props) {
-  if (!props.data.hasOwnProperty('columns')) {
-    return <></>
-  }
   const columns = props.data.columns
   const headers = columns.map((name, i) => <th key={'h' + i}>{name}</th>)
 
@@ -22,6 +20,13 @@ function DataTable (props) {
       </tbody>
     </table>
   )
+}
+
+DataTable.propTypes = {
+  data: PropTypes.shape({
+    columns: PropTypes.array,
+    data: PropTypes.array
+  }).isRequired
 }
 
 export default DataTable
