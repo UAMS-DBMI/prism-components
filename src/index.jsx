@@ -1,5 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
-import CohortBuilder from './components/CohortBuilder'
+import Example from './components/Example'
+//import CohortBuilderComponent from './components/CohortBuilder'
 
-render(<CohortBuilder />, document.getElementById('root'))
+//render(<CohortBuilderComponent />, document.getElementById('root'))
+render(<Example />, document.getElementById('root'))
