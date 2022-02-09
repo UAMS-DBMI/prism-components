@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Redcapfilter.module.css'
+import styles from './Redcapfilter.module.css'
 import BarChart from './BarChart'
 import PropTypes from 'prop-types'
 
@@ -43,12 +43,12 @@ function NumberRangeFilter (props) {
   }
 
   return (
-    <div className='form_box'>
-      <button className='remove-button' onClick={() => props.remove(props.data.name)}>X</button>
+    <div className={styles.form_box}>
+      <button className={styles.remove_button} onClick={() => props.remove(props.data.name)}>X</button>
       <h4>{props.data.name}</h4>
       <p>{props.data.label}</p>
-      <div className='boxes'>
-        <div className='num_boxes'>
+      <div className={styles.boxes}>
+        <div className={styles.num_boxes}>
           <label>Greater than or equal to</label>
           <input
             type='number'
@@ -60,7 +60,7 @@ function NumberRangeFilter (props) {
             placeholder='Greater than...'
           />
         </div>
-        <div className='num_boxes'>
+        <div className={styles.num_boxes}>
           <label>Less than or equal to</label>
           <input
             type='number'
@@ -73,7 +73,7 @@ function NumberRangeFilter (props) {
           />
         </div>
       </div>
-      <div className='fetch-button'>
+      <div className={styles.fetch_button}>
         <button onClick={fetchData} disabled={disableButton}>Fetch Data</button>
         {fetching === true ? <span>...</span> : <></>}
         <span>{totalCount}</span>

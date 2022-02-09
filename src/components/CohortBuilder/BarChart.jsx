@@ -1,5 +1,5 @@
 import React from 'react'
-import './mybarchart.module.css'
+import styles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
 
 function BarChart (props) {
@@ -18,7 +18,7 @@ function BarChart (props) {
       </tr>)
   }
   return (
-    <table className='my-charts-css bar show-labels'>
+    <table className={`${styles.my_charts_css} ${styles.bar} ${styles.show_labels}`}>
       <thead>
         <tr>
           <th scope='col'>Age</th>

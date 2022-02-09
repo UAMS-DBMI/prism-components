@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import './Redcapfilter.module.css'
-import './mybarchart.module.css'
+import styles from './Redcapfilter.module.css'
+import barStyles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
 
 function RadioFilter (props) {
@@ -124,7 +124,7 @@ function RadioFilter (props) {
     }
     totalCount = patientIds.size + ' unique subjects'
     input = (
-      <table className='my-charts-css bar reverse'>
+      <table className={`${barStyles.my_charts_css} ${barStyles.bar}`}>
         <tbody>
           {barBoxes(filters, max)}
         </tbody>
@@ -132,11 +132,11 @@ function RadioFilter (props) {
   }
 
   return (
-    <div className='form_box'>
-      <button className='remove-button' onClick={() => props.remove(props.data.name)}>X</button>
+    <div className={styles.form_box}>
+      <button className={styles.remove_button} onClick={() => props.remove(props.data.name)}>X</button>
       <h4>{props.data.name}</h4>
       <p>{props.data.label}</p>
-      <div className='boxes'>
+      <div className={styles.boxes}>
         <label>
           <input
             type='checkbox'
@@ -148,7 +148,7 @@ function RadioFilter (props) {
         </label>
         {input}
       </div>
-      <div className='fetch-button'>
+      <div className={styles.fetch_button}>
         <button onClick={handleFetch} disabled={disableButton}>Fetch Data</button>
         {fetching === true ? <span>...</span> : <></>}
         <span>{totalCount}</span>

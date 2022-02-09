@@ -1,5 +1,5 @@
 import React from 'react'
-import './Redcapfilter.module.css'
+import styles from './Redcapfilter.module.css'
 import NumberRangeFilter from './NumberRangeFilter'
 import RadioFilter from './RadioFilter'
 import PropTypes from 'prop-types'
@@ -12,7 +12,7 @@ function RedcapFilter (props) {
   }
 
   return (
-    <div className='form_box'>
+    <div className={styles.form_box}>
       <button onClick={() => props.remove(props.data.name)}>X</button>
       <span>Missing Type: {props.data.type}</span>
     </div>

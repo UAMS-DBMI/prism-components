@@ -22,11 +22,11 @@
   justify-content: space-between;
 }
 
-.remove-button {
+.remove_button {
   float: right;
 }
 
-.fetch-button {
+.fetch_button {
   display: flex;
   justify-content: space-around;
   margin: 1em;
