@@ -6,15 +6,6 @@ const web = require('@neutrinojs/web');
 module.exports = {
   options: {
     root: __dirname,
-    devServer: {
-      proxy: {
-        '/api': {
-          target: 'http://sui-demo-prism.apps.dbmi.cloud',
-          pathRewrite: { '^/api': '' },
-          changeOrigin: true
-        }
-      }
-    }
   },
   use: [
     standard(),
