@@ -1,0 +1,33 @@
+.form_box {
+  padding: 1em;
+  margin-top: 0.75em;
+  border-left: 0.25em solid #444444;
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  width: 100%;
+  background: #E9E9E9;
+  vertical-align: middle;
+  user-select: none;
+  outline: currentcolor none medium;
+  color: #222222;
+}
+
+.boxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.num_boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-button {
+  float: right;
+}
+
+.fetch-button {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
