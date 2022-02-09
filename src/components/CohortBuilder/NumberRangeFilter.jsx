@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Redcapfilter.css'
 import BarChart from './BarChart'
+import PropTypes from 'prop-types'
 
 function NumberRangeFilter (props) {
   const [greaterThan, setGreaterThan] = useState('')
@@ -82,6 +83,16 @@ function NumberRangeFilter (props) {
       <div>{summary}</div>
     </div>
   )
+}
+
+NumberRangeFilter.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string,
+    label: PropTypes.string,
+    api: PropTypes.string
+  }).isRequired,
+  remove: PropTypes.function.isRequired,
+  fetch: PropTypes.function.isRequired
 }
 
 export default NumberRangeFilter

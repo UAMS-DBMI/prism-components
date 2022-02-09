@@ -1,5 +1,6 @@
 import React from 'react'
 import './mybarchart.css'
+import PropTypes from 'prop-types'
 
 function BarChart (props) {
   let max = 0
@@ -10,10 +11,11 @@ function BarChart (props) {
   }
   for (key in props.data) {
     const count = props.data[key].length
-    rows.push(<tr key={key}>
-      <th scope='row'>{key}</th>
-      <td style={{ '--size': 'calc(' + count + '/' + max + ')' }}>{count}</td>
-    </tr>)
+    rows.push(
+      <tr key={key}>
+        <th scope='row'>{key}</th>
+        <td style={{ '--size': 'calc(' + count + '/' + max + ')' }}>{count}</td>
+      </tr>)
   }
   return (
     <table className='my-charts-css bar show-labels'>
@@ -28,6 +30,10 @@ function BarChart (props) {
       </tbody>
     </table>
   )
+}
+
+BarChart.propTypes = {
+  data: PropTypes.object.isRequired
 }
 
 export default BarChart

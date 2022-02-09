@@ -159,7 +159,7 @@ RadioFilter.propTypes = {
     choices: PropTypes.array
   }).isRequired,
   remove: PropTypes.function.isRequired,
-  fetch: PropTypes.functoin.isRequired
+  fetch: PropTypes.function.isRequired
 }
 
 export default RadioFilter
