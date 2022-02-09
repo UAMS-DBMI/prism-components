@@ -484,4 +484,4 @@ function CohortBuilder () {
   )
 }
 
-export default CohortBuilder;
+export default CohortBuilder
