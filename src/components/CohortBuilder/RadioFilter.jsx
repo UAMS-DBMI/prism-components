@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Redcapfilter.css'
 import './mybarchart.css'
+import PropTypes from 'prop-types'
 
 function RadioFilter (props) {
   const startingFilters = {}
@@ -15,7 +16,7 @@ function RadioFilter (props) {
   const [disableButton, setDisableButton] = useState(true)
   const [allSelect, setAllSelect] = useState(false)
 
-  async function fetchData () {
+  const handleFetch = async () => {
     setFetching(true)
     setDisableButton(true)
     const url = '/api/data/' + props.data.api + '?'
@@ -104,7 +105,7 @@ function RadioFilter (props) {
 
   let input = check_boxes(filters)
 
-  let total_count = ''
+  let totalCount = ''
   const patient_ids = new Set()
   if (data !== null) {
     let max = 0
@@ -115,12 +116,12 @@ function RadioFilter (props) {
         patient_ids.add(patient_id)
       }
     }
-    total_count = patient_ids.size + ' unique subjects'
+    totalCount = patient_ids.size + ' unique subjects'
     input = (<table className='my-charts-css bar reverse'>
       <tbody>
         {bar_boxes(filters, max)}
       </tbody>
-             </table>)
+    </table>)
   }
 
   return (
@@ -141,12 +142,24 @@ function RadioFilter (props) {
         {input}
       </div>
       <div className='fetch-button'>
-        <button onClick={fetchData} disabled={disableButton}>Fetch Data</button>
+        <button onClick={this.handleFetch} disabled={disableButton}>Fetch Data</button>
         {fetching === true ? <span>...</span> : <></>}
-        <span>{total_count}</span>
+        <span>{totalCount}</span>
       </div>
     </div>
   )
+}
+
+RadioFilter.propTypes = {
+  data: PropTypes.shape({
+    type: PropTypes.string,
+    name: PropTypes.string,
+    label: PropTypes.string,
+    api: PropTypes.string,
+    choices: PropTypes.array
+  }).isRequired,
+  remove: PropTypes.function.isRequired,
+  fetch: PropTypes.functoin.isRequired
 }
 
 export default RadioFilter
