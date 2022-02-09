@@ -1,5 +1,5 @@
 import React from 'react'
-import './DataTable.css'
+import './DataTable.module.css'
 import PropTypes from 'prop-types'
 
 function DataTable (props) {

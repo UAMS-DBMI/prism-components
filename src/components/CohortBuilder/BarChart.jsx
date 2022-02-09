@@ -1,5 +1,5 @@
 import React from 'react'
-import './mybarchart.css'
+import './mybarchart.module.css'
 import PropTypes from 'prop-types'
 
 function BarChart (props) {

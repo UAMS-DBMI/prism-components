@@ -1,0 +1,19 @@
+{
+  "name": "cohort-builder",
+  "version": "1.0.0",
+  "description": "The cohort builder for PRISM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UAMS-DBMI/prism-components.git"
+  },
+  "author": "Joseph Utecht",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UAMS-DBMI/prism-components/issues"
+  },
+  "homepage": "https://github.com/UAMS-DBMI/prism-components#readme"
+}

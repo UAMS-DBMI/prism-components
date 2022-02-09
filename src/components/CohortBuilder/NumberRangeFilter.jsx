@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Redcapfilter.css'
+import './Redcapfilter.module.css'
 import BarChart from './BarChart'
 import PropTypes from 'prop-types'
 

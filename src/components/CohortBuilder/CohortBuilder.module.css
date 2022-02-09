@@ -1,4 +1,4 @@
-.Beam-header {
+.Beam_header {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -8,7 +8,7 @@
   padding-top: 1em;
 }
 
-.App-link {
+.App_link {
   text-decoration: none;
 }
 

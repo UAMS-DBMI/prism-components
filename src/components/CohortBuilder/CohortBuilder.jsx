@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import './CohortBuilder.css'
+import styles from './CohortBuilder.module.css'
 import RedcapFilter from './Redcapfilter'
 import DataTable from './DataTable'
 import { useFetch } from './useFetch'
@@ -10,7 +10,7 @@ import PropTypes from 'prop-types'
 
 function CategoryTableRow (props) {
   return (
-    <tr className='filter_row' onClick={() => props.added(props.data.name, null)}>
+    <tr className={styles.filter_row} onClick={() => props.added(props.data.name, null)}>
       <td>{props.data.name}</td>
       <td>{props.data.label}</td>
     </tr>
@@ -27,7 +27,7 @@ CategoryTableRow.propTypes = {
 
 function TermTableRow (props) {
   return (
-    <tr className='filter_row' onClick={() => props.added(props.category, props.value)}>
+    <tr className={styles.filter_row} onClick={() => props.added(props.category, props.value)}>
       <td>{props.category}</td>
       <td>{props.label}</td>
       <td>{props.definition}</td>
@@ -99,14 +99,14 @@ function FilterBox (props) {
   } */
 
   return (
-    <div className='filter_div'>
-      <span className='filter_type'>{props.must} Criteria</span>
-      <div className='filter_container'>
-        <div className='filter_spreader'>
-          <div className='filter_search_box'>
-            <div className='filter_form'>
+    <div className={styles.filter_div}>
+      <span className={styles.filter_type}>{props.must} Criteria</span>
+      <div className={styles.filter_container}>
+        <div className={styles.filter_spreader}>
+          <div className={styles.filter_search_box}>
+            <div className={styles.filter_form}>
               <input
-                className='filter_search_input'
+                className={styles.filter_search_input}
                 type='text'
                 value={textFilter}
                 onChange={(e) => {
@@ -114,21 +114,21 @@ function FilterBox (props) {
                 }}
                 placeholder='Search Term...'
               />
-              <svg className='filter_button' viewBox='0 0 490 490'>
+              <svg className={styles.filter_button} viewBox='0 0 490 490'>
                 <path fill='none' stroke='#000' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
               </svg>
             </div>
-            <span className='explore_button' onClick={() => setShowBox(!showBox)}>
+            <span className={styles.explore_button} onClick={() => setShowBox(!showBox)}>
               <svg height='1em' width='1em' viewBox='0 0 512 512'>
                 <path d='m478.387 321.984h-28.847l-51.232-62.619c-6.409-7.836-15.892-12.33-26.016-12.33h-106.292v-57.02h94.969c18.534 0 33.613-15.079 33.613-33.613v-66.359c0-18.534-15.079-33.613-33.613-33.613h-60.565c-5.522 0-10 4.478-10 10s4.478 10 10 10h60.565c7.507 0 13.613 6.106 13.613 13.613v66.359c0 7.507-6.106 13.613-13.613 13.613h-209.938c-7.507 0-13.613-6.106-13.613-13.613v-66.359c0-7.507 6.106-13.613 13.613-13.613h60.666c5.522 0 10-4.478 10-10s-4.478-10-10-10h-60.666c-18.534 0-33.613 15.079-33.613 33.613v66.359c0 18.534 15.079 33.613 33.613 33.613h94.969v57.02h-106.697c-10.124 0-19.606 4.494-26.015 12.329l-51.233 62.62h-28.442c-18.534 0-33.613 15.079-33.613 33.614v66.359c0 18.534 15.079 33.613 33.613 33.613h66.359c18.534 0 33.613-15.079 33.613-33.613v-66.359c0-18.534-15.079-33.613-33.613-33.613h-12.077l40.873-49.957c2.596-3.173 6.436-4.992 10.535-4.992h106.697v54.949h-23.18c-18.534 0-33.613 15.079-33.613 33.613v66.359c0 18.534 15.079 33.613 33.613 33.613h66.359c18.534 0 33.613-15.079 33.613-33.613v-66.359c0-18.534-15.079-33.613-33.613-33.613h-23.179v-54.949h106.292c4.1 0 7.939 1.819 10.536 4.993l40.872 49.956h-11.673c-18.534 0-33.613 15.079-33.613 33.613v66.359c0 18.534 15.079 33.613 33.613 33.613h66.359c18.534 0 33.613-15.079 33.613-33.613v-66.359c.001-18.535-15.078-33.614-33.612-33.614zm-364.801 33.614v66.359c0 7.507-6.106 13.613-13.613 13.613h-66.36c-7.507 0-13.613-6.106-13.613-13.613v-66.359c0-7.507 6.106-13.613 13.613-13.613h66.359c7.507-.001 13.614 6.106 13.614 13.613zm189.207 0v66.359c0 7.507-6.106 13.613-13.613 13.613h-66.36c-7.507 0-13.613-6.106-13.613-13.613v-66.359c0-7.507 6.106-13.613 13.613-13.613h66.359c7.508-.001 13.614 6.106 13.614 13.613zm189.207 66.359c0 7.507-6.106 13.613-13.613 13.613h-66.359c-7.507 0-13.613-6.106-13.613-13.613v-66.359c0-7.507 6.106-13.613 13.613-13.613h66.359c7.507 0 13.613 6.106 13.613 13.613z' />
                 <path d='m246.77 70.25c2.067 5.039 8.028 7.494 13.05 5.41 5.03-2.087 7.501-8.014 5.41-13.051-2.091-5.036-8.012-7.509-13.06-5.42-5.024 2.079-7.488 8.045-5.4 13.061z' />
               </svg>
             </span>
           </div>
-          <div className='filter_results_container' style={{ display: (showBox ? 'flex' : 'none') }}>
+          <div className={styles.filter_results_container} style={{ display: (showBox ? 'flex' : 'none') }}>
             <button style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()}>Close</button>
-            <div className='filter_list'>
-              <table className='filter_table'>
+            <div className={styles.filter_list}>
+              <table className={styles.filter_table}>
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -141,10 +141,10 @@ function FilterBox (props) {
               </table>
             </div>
           </div>
-          <div className='filter_results_container' style={{ display: (textFilter !== '' ? 'flex' : 'none') }}>
+          <div className={styles.filter_results_container} style={{ display: (textFilter !== '' ? 'flex' : 'none') }}>
             <button style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()}>Close</button>
-            <div className='filter_list'>
-              <table className='filter_table'>
+            <div className={styles.filter_list}>
+              <table className={styles.filter_table}>
                 <thead>
                   <tr>
                     <th>Category</th>
@@ -349,7 +349,7 @@ function CohortBuilder () {
     return allFeatures.map((feature) => {
       const x = myFeatures.indexOf(feature) >= 0
 
-      return <td key={feature} className='col_feature'>{x ? 'X' : ''}</td>
+      return <td key={feature} className={styles.col_feature}>{x ? 'X' : ''}</td>
     }
     )
   }
@@ -364,43 +364,43 @@ function CohortBuilder () {
 
   return (
     <div>
-      <header className='Beam-header'>
-        <div className='header_section' style={{ flexGrow: 0 }}>
-          <h2 className='collection_size'>Repository Overview</h2>
-          <div className='collection_info'>
-            <div className='collection_info_category'>
+      <header className={styles.Beam_header}>
+        <div className={styles.header_section} style={{ flexGrow: 0 }}>
+          <h2 className={styles.collection_size}>Repository Overview</h2>
+          <div className={styles.collection_info}>
+            <div className={styles.collection_info_category}>
               <h4>Subjects</h4>
-              <div className='collection_icon_row'>
-                <img className='collection_icons' src={PersonLogo} alt='Person Icon' />
+              <div className={styles.collection_icon_row}>
+                <img className={styles.collection_icons} src={PersonLogo} alt='Person Icon' />
                 <span>{metadata.total.toLocaleString()}</span>
               </div>
             </div>
-            <div className='collection_info_category'>
+            <div className={styles.collection_info_category}>
               <h4>Collections</h4>
-              <div className='collection_icon_row'>
-                <img className='collection_icons' src={FilesLogo} alt='Collection Icon' />
+              <div className={styles.collection_icon_row}>
+                <img className={styles.collection_icons} src={FilesLogo} alt='Collection Icon' />
                 <span>{metadata.collections.length}</span>
               </div>
             </div>
-            <div className='collection_info_category'>
+            <div className={styles.collection_info_category}>
               <h4>Concepts</h4>
-              <div className='collection_icon_row'>
-                <img className='collection_icons' src={DataLogo} alt='Data Icon' />
+              <div className={styles.collection_icon_row}>
+                <img className={styles.collection_icons} src={DataLogo} alt='Data Icon' />
                 <span>{conceptCount}</span>
               </div>
             </div>
           </div>
-          <button className='show_collection_button' onClick={() => setShowCollections(!showCollections)}>
-            <svg className='filter_button' viewBox='0 0 490 490'>
+          <button className={styles.show_collection_button} onClick={() => setShowCollections(!showCollections)}>
+            <svg className={styles.filter_button} viewBox='0 0 490 490'>
               <path opacity='0.4' fill='none' stroke='#000' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
             </svg>
             <span>{showCollections ? 'Hide' : 'Show'} Collections</span>
           </button>
         </div>
-        <div className='header_section' style={{ flexGrow: 0 }}>
+        <div className={styles.header_section} style={{ flexGrow: 0 }}>
           <h2 className=''>Current Cohort - {currentCohort.length} subjects</h2>
-          <div className='row_flex'>
-            <button className='tallButton' onClick={() => resetAll()}>
+          <div className={styles.row_flex}>
+            <button className={styles.tallButton} onClick={() => resetAll()}>
               <svg version='1.1' viewBox='0 0 70 70' height='3em' with='3em'>
                 <g>
                   <g fill='#555753'>
@@ -412,18 +412,18 @@ function CohortBuilder () {
               <span>Reset Filters</span>
             </button>
             <button
-              className='tallButton'
+              className={styles.tallButton}
               disabled={currentCohort.length === 0}
               onClick={() => displayCohort()}
             >
-              <svg className='filter_button' viewBox='0 0 490 490'>
+              <svg className={styles.filter_button} viewBox='0 0 490 490'>
                 <path opacity='0.4' fill='none' stroke='#000' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
               </svg>
               <span>{showCohort ? 'Hide' : 'Preview'} Subjects ({currentCohort.length})</span>
             </button>
             <a style={{ textDecoration: 'none' }} href={downloadLink}>
               <button
-                className='tallButton'
+                className={styles.tallButton}
                 disabled={currentCohort.length === 0}
               >
                 <svg version='1.1' viewBox='0 0 20 20' height='2em' with='2em'>

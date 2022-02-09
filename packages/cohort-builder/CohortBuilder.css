@@ -1,0 +1,418 @@
+.Beam-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  height: 14em;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+.App-link {
+  text-decoration: none;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 3em;
+}
+
+.filter_div {
+}
+
+.filter_type {
+  font-size: 1.05em;
+  padding: 0.25em 1em;
+  border-top-left-radius: .25em;
+  border-top-right-radius: .25em;
+  background-color: #8D44CE78;
+  color: black;
+}
+
+.filter_table tr:nth-child(even){
+  background-color: #e9e9e9;
+}
+
+.filter_container {
+  display: flex;
+  margin-top: 0.25em;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: #8D44CE78 0px 0px 0.25em;
+  border-radius: 0 .25em .25em 0.25em;
+  border: 1px solid #8D44CE78;
+  width: 100%;
+}
+
+.filter_spreader {
+  width: 100%;
+}
+
+.filter_search_box{
+  display: flex;
+}
+
+.filter_form {
+  display: flex;
+  flex: 1 1 0%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.filter_button {
+  width: 1em;
+  height: 1em;
+  fill: currentcolor;
+  font-size: 1.25em;
+}
+
+.explore_button {
+  border: 0px none;
+  margin: 0px 0px 0px 0.5em;
+  background: #8D44CE78 none repeat scroll 0% 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  font-size: 1.125em;
+  padding: 0px 0.5em;
+  border-radius: 0 3px 3px 0;
+}
+
+.filter_search_input {
+  top: 0;
+  left: 0;
+  border: 0;
+  box-shadow: none;
+  width: 100%;
+  font-size: 1em;
+  padding: .625em 2em .625em 1.125em;
+  border-radius: 0 .25em .25em .25em;
+}
+
+.filter_results_container {
+  width: 100%;
+  font-size: .875em;
+  margin-top: .85em;
+  min-height: 6em;
+  list-style: none;
+  background-color: #fff;
+  color: #2e2b2b;
+  z-index: 999;
+  box-shadow: 0 10px 20px 5px rgba(0,0,0,.1);
+  border-radius: 0 0 .25em .25em;
+  flex-direction: column;
+}
+
+.category_container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category_box {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  border: 1px solid #8D44CE78;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.5em;
+}
+
+tr.filter_row:hover {
+  background-color: #8D44CE78;
+}
+
+.filter_containers {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.filter_item_container {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+}
+
+.tallButton {
+  margin: 3em;
+  padding: 1em;
+  height: 7em;
+  width: 7em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header_section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #e9e9e9;
+  color: #222222;
+  height: 100%;
+  text-align: center;
+  flex-basis: content;
+  border-radius: 10px;
+  padding: .5em;
+}
+
+.cohort_name {
+  width: 100%;
+  font-size: 1em;
+}
+
+.cohort_size_button {
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  width: 100%;
+}
+
+.collection_size {
+  margin-bottom: 0em;
+}
+
+.show_collection_button {
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  width: 50%;
+  align-self: center;
+}
+
+.collection_info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.collection_info h4 {
+  margin-top: .5em;
+}
+
+.collection_info_category {
+  margin: 1em;
+}
+
+.collection_icon_row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.collection_icons {
+  width: 20px;
+  height: 20px;
+}
+
+.row_flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.collection_table th {
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.collection_table tbody tr:nth-child(odd){
+  background-color: #E2E6EE;
+}
+
+.col_feature {
+  text-align: center;
+}
+
+.form_box {
+  padding: 1em;
+  margin-top: 0.75em;
+  border-left: 0.25em solid #444444;
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  width: 100%;
+  background: #E9E9E9;
+  vertical-align: middle;
+  user-select: none;
+  outline: currentcolor none medium;
+  color: #222222;
+}
+
+.boxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.num_boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-button {
+  float: right;
+}
+
+.fetch-button {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em;
+}
+
+.chart-labels {
+  display: flex;
+}
+
+.my-charts-css {
+    --color-1: rgba(240,50,50,0.75);
+    --color-2: rgba(255,180,50,0.75);
+    --color-3: rgba(255,220,90,0.75);
+    --color-4: rgba(100,210,80,0.75);
+    --color-5: rgba(90,165,255,0.75);
+    --color-6: rgba(170,90,240,0.75);
+    --color-7: hsla(0,0%,70.6%,0.75);
+    --color-8: hsla(0,0%,43.1%,0.75);
+    --color-9: rgba(170,150,110,0.75);
+    --color-10: rgba(130,50,20,0.75);
+}
+
+table.my-charts-css {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.my-charts-css tbody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+}
+
+.my-charts-css tr {
+  display: flex;
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  /*overflow-wrap: anywhere;*/
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.my-charts-css td {
+  justify-content: flex-end;
+  text-align: end;
+  width: calc(50% * var(--size, 1));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 1) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 1),
+.my-charts-css.column tbody tr:nth-of-type(10n + 1) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 1),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 1)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 1)::before {
+  background: var(--color, var(--color-1));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 2) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 2),
+.my-charts-css.column tbody tr:nth-of-type(10n + 2) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 2),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 2)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 2)::before {
+  background: var(--color, var(--color-2));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 3) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 3),
+.my-charts-css.column tbody tr:nth-of-type(10n + 3) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 3),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 3)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 3)::before {
+  background: var(--color, var(--color-3));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 4) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 4),
+.my-charts-css.column tbody tr:nth-of-type(10n + 4) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 4),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 4)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 4)::before {
+  background: var(--color, var(--color-4));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 5) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 5),
+.my-charts-css.column tbody tr:nth-of-type(10n + 5) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 5),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 5)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 5)::before {
+  background: var(--color, var(--color-5));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 6) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 6),
+.my-charts-css.column tbody tr:nth-of-type(10n + 6) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 6),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 6)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 6)::before {
+  background: var(--color, var(--color-6));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 7) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 7),
+.my-charts-css.column tbody tr:nth-of-type(10n + 7) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 7),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 7)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 7)::before {
+  background: var(--color, var(--color-7));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 8) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 8),
+.my-charts-css.column tbody tr:nth-of-type(10n + 8) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 8),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 8)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 8)::before {
+  background: var(--color, var(--color-8));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 9) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 9),
+.my-charts-css.column tbody tr:nth-of-type(10n + 9) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 9),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 9)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 9)::before {
+  background: var(--color, var(--color-9));
+}
+
+.my-charts-css.bar tbody tr:nth-of-type(10n + 10) td,
+.my-charts-css.bar.multiple tbody tr td:nth-of-type(10n + 10),
+.my-charts-css.column tbody tr:nth-of-type(10n + 10) td,
+.my-charts-css.column.multiple tbody tr td:nth-of-type(10n + 10),
+.my-charts-css.area tbody tr td:nth-of-type(10n + 10)::before,
+.my-charts-css.line tbody tr td:nth-of-type(10n + 10)::before {
+  background: var(--color, var(--color-10));
+}
+
+.data-table {
+  width: 100%;
+}
+
+.data-table th {
+  text-align: left;
+}
+
+
+/*# sourceMappingURL=CohortBuilder.css.map*/

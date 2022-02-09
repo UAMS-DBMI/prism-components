@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import './Redcapfilter.css'
-import './mybarchart.css'
+import './Redcapfilter.module.css'
+import './mybarchart.module.css'
 import PropTypes from 'prop-types'
 
 function RadioFilter (props) {

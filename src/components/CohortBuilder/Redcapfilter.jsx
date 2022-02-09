@@ -1,5 +1,5 @@
 import React from 'react'
-import './Redcapfilter.css'
+import './Redcapfilter.module.css'
 import NumberRangeFilter from './NumberRangeFilter'
 import RadioFilter from './RadioFilter'
 import PropTypes from 'prop-types'
