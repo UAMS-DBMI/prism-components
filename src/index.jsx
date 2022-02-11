@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Example from './components/Example'
+import CollectionTable from './components/CollectionTable'
 import CohortBuilderComponent from './components/CohortBuilder'
 
 const testFetch = async (url, opts = {}) => {
@@ -14,6 +14,6 @@ const testFetch = async (url, opts = {}) => {
 
 render(
   <div style={{ display: 'flex', flexDirection: 'column' }}>
-    <Example />
     <CohortBuilderComponent api={testFetch} />
+    <CollectionTable api={testFetch} />
   </div>, document.getElementById('root'))

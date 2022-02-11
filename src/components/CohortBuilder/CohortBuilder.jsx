@@ -3,11 +3,11 @@ import styles from './CohortBuilder.module.css'
 import RedcapFilter from './Redcapfilter'
 import FilterBox from './FilterBox'
 import DataTable from './DataTable'
-import { useFetch } from './useFetch'
+import { useFetch } from '../../utils/useFetch'
 import DataLogo from './data_logo.svg'
 import FilesLogo from './files_logo.svg'
 import PersonLogo from './person_logo.svg'
-import { ApiFetch } from './ApiFetch'
+import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
 
 function CohortBuilder () {

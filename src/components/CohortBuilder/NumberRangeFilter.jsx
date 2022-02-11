@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import styles from './Redcapfilter.module.css'
 import BarChart from './BarChart'
 import PropTypes from 'prop-types'
-import { ApiFetch } from './ApiFetch'
+import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
 
 function NumberRangeFilter (props) {

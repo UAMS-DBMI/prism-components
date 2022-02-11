@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import styles from './Redcapfilter.module.css'
 import barStyles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
-import { ApiFetch } from './ApiFetch'
+import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
 
 function RadioFilter (props) {
