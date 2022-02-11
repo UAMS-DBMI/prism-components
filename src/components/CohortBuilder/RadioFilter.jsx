@@ -3,6 +3,7 @@ import styles from './Redcapfilter.module.css'
 import barStyles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
 import { ApiFetch } from './ApiFetch'
+import { ThreeDots } from 'react-loader-spinner'
 
 function RadioFilter (props) {
   const startingFilters = {}
@@ -21,7 +22,7 @@ function RadioFilter (props) {
   const handleFetch = async () => {
     setFetching(true)
     setDisableButton(true)
-    const url = '/api/data/' + props.data.api + '?'
+    const url = '/semapi/data/' + props.data.api + '?'
     const params = new URLSearchParams()
     const uris = Object.keys(filters).filter((uri) =>
       filters[uri].enabled
@@ -151,7 +152,7 @@ function RadioFilter (props) {
       </div>
       <div className={styles.fetch_button}>
         <button onClick={handleFetch} disabled={disableButton}>Fetch Data</button>
-        {fetching === true ? <span>...</span> : <></>}
+        {fetching === true ? <ThreeDots color='green' height={30} width={30} /> : <></>}
         <span>{totalCount}</span>
       </div>
     </div>

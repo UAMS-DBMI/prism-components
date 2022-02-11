@@ -2,6 +2,7 @@ import React from 'react'
 import CohortBuilder from './CohortBuilder'
 import { ApiFetch, fallbackFetch } from './ApiFetch'
 import PropTypes from 'prop-types'
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 // From https://reactjs.org/docs/hooks-state.html
 export default function CohortBuilderComponent (props) {

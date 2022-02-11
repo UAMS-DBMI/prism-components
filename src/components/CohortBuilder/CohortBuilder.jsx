@@ -8,6 +8,7 @@ import DataLogo from './data_logo.svg'
 import FilesLogo from './files_logo.svg'
 import PersonLogo from './person_logo.svg'
 import { ApiFetch } from './ApiFetch'
+import { ThreeDots } from 'react-loader-spinner'
 
 function CohortBuilder () {
   const [mustFilters, setMustFilters] = useState([])
@@ -23,17 +24,25 @@ function CohortBuilder () {
 
   const apiFetch = useContext(ApiFetch)
 
-  const config = useFetch('/api/config')
-  const metadata = useFetch('/api/collections')
+  const config = useFetch('/semapi/config')
+  const metadata = useFetch('/semapi/collections')
 
   if (config === null || metadata === null) {
-    return <span>...loading...</span>
+    return <ThreeDots color='grey' wrapperStyle={{ display: 'flex', justifyContent: 'center' }} />
   }
   if (config.detail === 'Not Found') {
-    return <span>Error loading config</span>
+    return (
+      <>
+        <h3>Error loading config</h3>
+        <p style={{ color: 'red' }}>Semantic API endpoint was unreachable</p>
+      </>)
   }
   if (metadata.detail === 'Not Found') {
-    return <span>Error loading config</span>
+    return (
+      <>
+        <h3>Error loading collections</h3>
+        <p style={{ color: 'red' }}>Semantic API endpoint was unreachable</p>
+      </>)
   }
 
   function resetAll () {
@@ -140,23 +149,20 @@ function CohortBuilder () {
   async function fetchAll (currentCohort) {
     setFetching(true)
     setAllData({})
-    const url = '/api/data?'
+    const url = '/semapi/data?'
     const opts = {
       method: 'POST',
       body: JSON.stringify(
         { patient_ids: currentCohort }
       ),
-      headers: {
-        'Content-Type': 'application/json'
-        // TODO: add apikey here
-      }
+      headers: new Headers({ 'Content-Type': 'application/json' })
     }
     const data = await apiFetch(url, opts)
     setFetching(false)
     setAllData(data)
   }
 
-  const dUrl = '/api/data?'
+  const dUrl = '/semapi/data?'
   const dParams = new URLSearchParams()
   dParams.set('patient_ids', currentCohort.join(','))
   dParams.set('downloadFile', cohortName)
@@ -333,7 +339,7 @@ function CohortBuilder () {
         (showCohort === true)
           ? <div className={styles.currentCohort}>
             {fetching
-              ? <span>fetching...</span>
+              ? <ThreeDots color='green' wrapperStyle={{ display: 'flex', justifyContent: 'center' }} />
               : <>
                   <h3>Sample Records</h3>
                   <DataTable data={allData} />

@@ -3,6 +3,7 @@ import styles from './Redcapfilter.module.css'
 import BarChart from './BarChart'
 import PropTypes from 'prop-types'
 import { ApiFetch } from './ApiFetch'
+import { ThreeDots } from 'react-loader-spinner'
 
 function NumberRangeFilter (props) {
   const [greaterThan, setGreaterThan] = useState('')
@@ -15,7 +16,7 @@ function NumberRangeFilter (props) {
   const fetchData = async () => {
     setDisableButton(true)
     setFetching(true)
-    const url = '/api/data/' + props.data.api + '?'
+    const url = '/semapi/data/' + props.data.api + '?'
     const params = new URLSearchParams()
     if (props.data.api === 'raw-calc') {
       params.set('name', props.data.name)
@@ -76,7 +77,7 @@ function NumberRangeFilter (props) {
       </div>
       <div className={styles.fetch_button}>
         <button onClick={fetchData} disabled={disableButton}>Fetch Data</button>
-        {fetching === true ? <span>...</span> : <></>}
+        {fetching === true ? <ThreeDots color='green' height={30} width={30} /> : <></>}
         <span>{totalCount}</span>
       </div>
       <div>{summary}</div>

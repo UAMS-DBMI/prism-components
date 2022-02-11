@@ -7,9 +7,9 @@ module.exports = neutrino().webpack();
 
 module.exports.devServer = {
     proxy: {
-      '/api': {
+      '/semapi': {
         target: 'http://sui-demo-prism.apps.dbmi.cloud/api',
-        pathRewrite: { '^/api': '' },
+        pathRewrite: { '^/semapi': '' },
         changeOrigin: true
       }
     }

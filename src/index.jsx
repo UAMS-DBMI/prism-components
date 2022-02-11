@@ -4,12 +4,10 @@ import Example from './components/Example'
 import CohortBuilderComponent from './components/CohortBuilder'
 
 const testFetch = async (url, opts = {}) => {
-  const apiOpts = {
-    headers: new Headers({
-      Authorization: 'Basic ' + btoa('username:password')
-    })
+  if (Object.prototype.hasOwnProperty.call(opts, 'headers')) {
+    opts.headers.append('Authorization', 'Basic ' + btoa('username:password'))
   }
-  opts = Object.assign(opts, apiOpts)
+
   const response = await fetch(url, opts)
   return await response.json()
 }
