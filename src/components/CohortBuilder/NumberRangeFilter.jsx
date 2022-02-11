@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styles from './Redcapfilter.module.css'
 import BarChart from './BarChart'
 import PropTypes from 'prop-types'
+import { apiFetch } from './apiFetch'
 
 function NumberRangeFilter (props) {
   const [greaterThan, setGreaterThan] = useState('')
@@ -9,6 +10,7 @@ function NumberRangeFilter (props) {
   const [data, setData] = useState(null)
   const [fetching, setFetching] = useState(null)
   const [disableButton, setDisableButton] = useState(false)
+  const apiKey = useContext('apiKey')
 
   const fetchData = async () => {
     setDisableButton(true)
@@ -20,8 +22,7 @@ function NumberRangeFilter (props) {
     }
     if (greaterThan !== '') params.set('min', greaterThan)
     if (lessThan !== '') params.set('max', lessThan)
-    const response = await fetch(url + params)
-    const data = await response.json()
+    const data = await apiFetch(url + params, apiKey)
     setData(data)
     setFetching(false)
     var cohort = []

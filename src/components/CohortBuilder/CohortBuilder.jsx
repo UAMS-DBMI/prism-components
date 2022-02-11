@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styles from './CohortBuilder.module.css'
 import RedcapFilter from './Redcapfilter'
 import FilterBox from './FilterBox'
@@ -19,9 +19,10 @@ function CohortBuilder () {
   const [allData, setAllData] = useState({})
   const [cohortName, setCohortName] = useState('Unnamed')
   const [fetching, setFetching] = useState(false)
+  const apiKey = useContext('apiKey')
 
-  const config = useFetch('/api/config')
-  const metadata = useFetch('/api/collections')
+  const config = useFetch('/api/config', apiKey)
+  const metadata = useFetch('/api/collections', apiKey)
 
   if (config === null || metadata === null) {
     return <span>...loading...</span>
@@ -145,6 +146,7 @@ function CohortBuilder () {
       ),
       headers: {
         'Content-Type': 'application/json'
+        // TODO: add apikey here
       }
     }
     const response = await fetch(url, opts)
