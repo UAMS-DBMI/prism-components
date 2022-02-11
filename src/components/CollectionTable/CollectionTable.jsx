@@ -1,17 +1,56 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useFetch } from '../../utils/useFetch'
+import { ThreeDots } from 'react-loader-spinner'
+import PropTypes from 'prop-types'
 
-// From https://reactjs.org/docs/hooks-state.html
+function CollectionRow (props) {
+  return (
+    <tr>
+      <td>{props.collection.collection_name}</td>
+      <td>{props.collection.collection_slug}</td>
+      <td>{props.collection.collection_doi}</td>
+      <td>0</td>
+    </tr>)
+}
+
+CollectionRow.propTypes = {
+  collection: PropTypes.shape({
+    collection_name: PropTypes.string,
+    collection_slug: PropTypes.string,
+    collection_doi: PropTypes.string
+  })
+}
+
 export default function CollectionTable () {
-  // Declare a new state variable, which we'll call "count"
-  const [count, setCount] = useState(0)
-  const message = `You clicked ${count} times`
+  const data = useFetch('/api/collections/')
+
+  if (data == null) {
+    return <ThreeDots color='grey' wrapperStyle={{ display: 'flex', justifyContent: 'center' }} />
+  }
+
+  if (data.detail === 'Not Found') {
+    return (
+      <>
+        <h3>Error loading collections</h3>
+        <p style={{ color: 'red' }}>Collection Manager API was unreachable</p>
+      </>)
+  }
+
+  console.log(data)
 
   return (
-    <div>
-      <p>{message}</p>
-      <button type='button' onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
+    <table id='collections'>
+      <thead>
+        <tr>
+          <th>Collection Name</th>
+          <th>Collection Slug</th>
+          <th>Collection DOI</th>
+          <th>File Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((row, i) => <CollectionRow key={i} collection={row} />)}
+      </tbody>
+    </table>
   )
 }

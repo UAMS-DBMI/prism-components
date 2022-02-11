@@ -11,6 +11,11 @@ module.exports.devServer = {
         target: 'http://sui-demo-prism.apps.dbmi.cloud/api',
         pathRewrite: { '^/semapi': '' },
         changeOrigin: true
+      },
+      '/api': {
+        target: 'http://localhost:8000/v1',
+        pathRewrite: { '^/api': '' },
+        changeOrigin: true
       }
     }
 };
