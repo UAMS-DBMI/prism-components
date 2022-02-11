@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { ApiFetch } from './ApiFetch'
 
-export const useFetch = (url, apiKey) => {
+export const useFetch = (url) => {
   const [data, setData] = useState(null)
+  const apiFetch = useContext(ApiFetch)
 
   useEffect(() => {
     async function fetchData () {
-      const response = await fetch(url)
-      const json = await response.json()
+      const json = await apiFetch(url)
       setData(json)
     }
     fetchData()
-  }, [url, apiKey])
+  }, [url, apiFetch])
   return data
 }

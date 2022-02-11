@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import styles from './Redcapfilter.module.css'
 import barStyles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
-import { apiFetch } from './apiFetch'
+import { ApiFetch } from './ApiFetch'
 
 function RadioFilter (props) {
   const startingFilters = {}
@@ -16,7 +16,7 @@ function RadioFilter (props) {
   const [fetching, setFetching] = useState(null)
   const [disableButton, setDisableButton] = useState(true)
   const [allSelect, setAllSelect] = useState(false)
-  const apiKey = useContext('apiKey')
+  const apiFetch = useContext(ApiFetch)
 
   const handleFetch = async () => {
     setFetching(true)
@@ -37,7 +37,7 @@ function RadioFilter (props) {
     } else {
       params.set('uris', uris.join(','))
     }
-    const data = await apiFetch(url + params, apiKey)
+    const data = await apiFetch(url + params)
     setFetching(false)
     setData(data)
     var cohort = []

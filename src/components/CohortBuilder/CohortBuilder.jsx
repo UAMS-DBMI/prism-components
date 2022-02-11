@@ -7,6 +7,7 @@ import { useFetch } from './useFetch'
 import DataLogo from './data_logo.svg'
 import FilesLogo from './files_logo.svg'
 import PersonLogo from './person_logo.svg'
+import { ApiFetch } from './ApiFetch'
 
 function CohortBuilder () {
   const [mustFilters, setMustFilters] = useState([])
@@ -19,10 +20,11 @@ function CohortBuilder () {
   const [allData, setAllData] = useState({})
   const [cohortName, setCohortName] = useState('Unnamed')
   const [fetching, setFetching] = useState(false)
-  const apiKey = useContext('apiKey')
 
-  const config = useFetch('/api/config', apiKey)
-  const metadata = useFetch('/api/collections', apiKey)
+  const apiFetch = useContext(ApiFetch)
+
+  const config = useFetch('/api/config')
+  const metadata = useFetch('/api/collections')
 
   if (config === null || metadata === null) {
     return <span>...loading...</span>
@@ -149,8 +151,7 @@ function CohortBuilder () {
         // TODO: add apikey here
       }
     }
-    const response = await fetch(url, opts)
-    const data = await response.json()
+    const data = await apiFetch(url, opts)
     setFetching(false)
     setAllData(data)
   }
