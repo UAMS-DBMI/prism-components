@@ -6,6 +6,7 @@ const web = require('@neutrinojs/web');
 module.exports = {
   options: {
     root: __dirname,
+    output: 'dist'
   },
   use: [
     standard(),
