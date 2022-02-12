@@ -5,10 +5,6 @@
   "files": [
     "dist/*"
   ],
-  "exports": {
-    "./dist/CohortBuilder.css": "./CohortBuilder.css",
-    "./dist/CohortBuilder.js": "./CohortBuilder.js"
-  },
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
