@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { mongoText } from './util'
-import './Checkbox.css'
+import styles from './Checkbox.module.css'
 import PropTypes from 'prop-types'
 
 const SearchFilter = (props) => {
@@ -27,9 +27,9 @@ const SearchFilter = (props) => {
   }
 
   return (
-    <form className='filterBox'>
-      <h4 className='filterName'>{cleanName(props.name)}</h4>
-      <div className='fitlerRowContainer'>
+    <form className={styles.filterBox}>
+      <h4 className={styles.filterName}>{cleanName(props.name)}</h4>
+      <div className={styles.fitlerRowContainer}>
         <input type='text' onChange={setFilter} data-testid='search-filter' />
         <button type='submit' onClick={(e) => callFilter(e, props.onChange, textValue)}>Filter</button>
       </div>

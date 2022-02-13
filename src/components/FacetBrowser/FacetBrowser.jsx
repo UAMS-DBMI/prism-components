@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './App.css'
+import styles from './FacetBrowser.module.css'
 import CheckboxFilter from './CheckboxFilter'
 import SearchFilter from './SearchFilter'
 import CornerstoneViewport from 'react-cornerstone-viewport'
@@ -112,7 +112,7 @@ const File = (props) => {
 
   return (
     <>
-      <tr className='file_row'>
+      <tr className={styles.file_row}>
         <td>
           <button
             onClick={() => props.toggleCart(props.file._id)}
@@ -265,13 +265,13 @@ function FacetBrowser () {
   const downloadLink = 'http://core-api.apps.dbmi.cloud/v1/' + 'zip/zip?file_ids=' + items
 
   return (
-    <div className='App'>
-      <div className='header'>
+    <div className={styles.App}>
+      <div className={styles.header}>
         <h1>PRISM Facet</h1>
-        <a href={downloadLink}><button className='downloadButton'>Download ({itemsInCart.length})</button></a>
+        <a href={downloadLink}><button className={styles.downloadButton}>Download ({itemsInCart.length})</button></a>
       </div>
-      <div className='container'>
-        <div className='filterBar'>
+      <div className={styles.container}>
+        <div className={styles.filterBar}>
           <CheckboxFilter
             name='_content_type'
             values={[
@@ -295,7 +295,7 @@ function FacetBrowser () {
             onChange={updateFilter}
           />
         </div>
-        <div className='file_list'>
+        <div className={styles.file_list}>
           <h1>{fileCount} Files</h1>
           <table>
             <tbody>

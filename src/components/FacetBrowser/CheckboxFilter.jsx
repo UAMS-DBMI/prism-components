@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { mongoOr } from './util'
-import './Checkbox.css'
+import styles from './Checkbox.module.css'
 import PropTypes from 'prop-types'
 
 const CheckboxFilter = (props) => {
@@ -30,11 +30,11 @@ const CheckboxFilter = (props) => {
   }
 
   return (
-    <div className='filterBox'>
-      <h4 className='filterName'>{cleanName(props.name)}</h4>
-      <div className='fitlerRowContainer'>
+    <div className={styles.filterBox}>
+      <h4 className={styles.filterName}>{cleanName(props.name)}</h4>
+      <div className={styles.fitlerRowContainer}>
         {props.values.map((value) =>
-          <div className='filterRow' key={value} data-testid={value + '_row'}>
+          <div className={styles.filterRow} key={value} data-testid={value + '_row'}>
             <label>{value}</label>
             <input type='checkbox' onChange={() => valueSelected(props.onChange, value)} />
           </div>

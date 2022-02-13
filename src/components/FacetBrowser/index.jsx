@@ -1,5 +1,4 @@
 import React from 'react'
-import './index.css'
 import FacetBrowser from './FacetBrowser'
 import initCornerstone from './initCornerstone.js'
 import { ApiFetch, fallbackFetch } from '../Utils/ApiFetch'
