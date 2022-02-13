@@ -8,7 +8,7 @@ import './site.css'
 
 const testFetch = async (url, opts = {}) => {
   if (Object.prototype.hasOwnProperty.call(opts, 'headers')) {
-    opts.headers.append('Authorization', 'Basic ' + btoa('username:password'))
+    opts.headers.Authorization = 'Basic ' + btoa('username:password')
   }
 
   const response = await fetch(url, opts)
