@@ -10,6 +10,8 @@ import PersonLogo from './person_logo.svg'
 import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Button from 'react-bootstrap/Button'
+import Table from 'react-bootstrap/Table'
 
 function CohortBuilder () {
   const [mustFilters, setMustFilters] = useState([])
@@ -208,99 +210,100 @@ function CohortBuilder () {
     <div>
       <header className={styles.Beam_header}>
         <div className={styles.header_section} style={{ flexGrow: 0 }}>
-          <h2 className={styles.collection_size}>Repository Overview</h2>
+          <h6 className='display-6'>Repository Overview</h6>
           <div className={styles.collection_info}>
             <div className={styles.collection_info_category}>
-              <h4>Subjects</h4>
+              <h6>Subjects</h6>
               <div className={styles.collection_icon_row}>
                 <img className={styles.collection_icons} src={PersonLogo} alt='Person Icon' />
                 <span>{metadata.total.toLocaleString()}</span>
               </div>
             </div>
             <div className={styles.collection_info_category}>
-              <h4>Collections</h4>
+              <h6>Collections</h6>
               <div className={styles.collection_icon_row}>
                 <img className={styles.collection_icons} src={FilesLogo} alt='Collection Icon' />
                 <span>{metadata.collections.length}</span>
               </div>
             </div>
             <div className={styles.collection_info_category}>
-              <h4>Concepts</h4>
+              <h6>Concepts</h6>
               <div className={styles.collection_icon_row}>
                 <img className={styles.collection_icons} src={DataLogo} alt='Data Icon' />
                 <span>{conceptCount}</span>
               </div>
             </div>
           </div>
-          <button className={styles.show_collection_button} onClick={() => setShowCollections(!showCollections)}>
-            <svg className={styles.filter_button} viewBox='0 0 490 490'>
-              <path opacity='0.4' fill='none' stroke='#000' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
-            </svg>
-            <span>{showCollections ? 'Hide' : 'Show'} Collections</span>
-          </button>
+          <Button variant='outline-dark' className={styles.show_collection_button} onClick={() => setShowCollections(!showCollections)}>
+            <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+              <svg className={styles.filter_button} viewBox='0 0 490 490'>
+                <path fill='none' stroke='currentColor' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
+              </svg>
+              <span>{showCollections ? 'Hide' : 'Show'} Collections</span>
+            </div>
+          </Button>
         </div>
         <div className={styles.header_section} style={{ flexGrow: 0 }}>
-          <h2 className=''>Current Cohort - {currentCohort.length} subjects</h2>
-          <div className={styles.row_flex}>
-            <button className={styles.tallButton} onClick={() => resetAll()}>
-              <svg version='1.1' viewBox='0 0 70 70' height='3em' with='3em'>
-                <g>
-                  <g fill='#555753'>
+          <h6 className='display-6'>Current Cohort - {currentCohort.length} subjects</h6>
+          <div style={{ display: 'flex' }}>
+            <Button styles={{ height: '100%' }} variant='outline-dark' onClick={() => resetAll()}>
+              <div className={styles.tallButton}>
+                <svg version='1.1' viewBox='0 0 85 85' height='2em' width='2em' fill='currentColor'>
+                  <g>
                     <path d='m32.5 4.999c-5.405 0-10.444 1.577-14.699 4.282l-5.75-5.75v16.11h16.11l-6.395-6.395c3.18-1.787 6.834-2.82 10.734-2.82 12.171 0 22.073 9.902 22.073 22.074 0 2.899-0.577 5.664-1.599 8.202l4.738 2.762c1.47-3.363 2.288-7.068 2.288-10.964 0-15.164-12.337-27.501-27.5-27.501z' />
                     <path d='m43.227 51.746c-3.179 1.786-6.826 2.827-10.726 2.827-12.171 0-22.073-9.902-22.073-22.073 0-2.739 0.524-5.35 1.439-7.771l-4.731-2.851c-1.375 3.271-2.136 6.858-2.136 10.622 0 15.164 12.336 27.5 27.5 27.5 5.406 0 10.434-1.584 14.691-4.289l5.758 5.759v-16.112h-16.111l6.389 6.388z' />
                   </g>
-                </g>
-              </svg>
-              <span>Reset Filters</span>
-            </button>
-            <button
-              className={styles.tallButton}
+                </svg>
+                <span>Reset Filters</span>
+              </div>
+            </Button>
+            <Button
+              variant='outline-dark'
               disabled={currentCohort.length === 0}
               onClick={() => displayCohort()}
             >
-              <svg className={styles.filter_button} viewBox='0 0 490 490'>
-                <path opacity='0.4' fill='none' stroke='#000' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
-              </svg>
-              <span>{showCohort ? 'Hide' : 'Preview'} Subjects ({currentCohort.length})</span>
-            </button>
-            <a style={{ textDecoration: 'none' }} href={downloadLink}>
-              <button
-                className={styles.tallButton}
-                disabled={currentCohort.length === 0}
-              >
-                <svg version='1.1' viewBox='0 0 20 20' height='2em' with='2em'>
+              <div className={styles.tallButton}>
+                <svg className={styles.filter_button} viewBox='0 0 490 490' height='2em' width='2em' fill='currentColor'>
+                  <path fill='none' stroke='currentColor' strokeWidth='36' d='m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110' />
+                </svg>
+                <span>{showCohort ? 'Hide' : 'Preview'} Subjects ({currentCohort.length})</span>
+              </div>
+            </Button>
+            <Button
+              href={downloadLink}
+              variant='outline-dark'
+              disabled={currentCohort.length === 0}
+            >
+              <div className={styles.tallButton}>
+                <svg version='1.1' viewBox='0 0 20 20' height='2em' with='2em' fill='currentColor'>
                   <path
-                    fill='#555753' opacity='0.5'
                     d='M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z'
                   />
                   <path
-                    fill='#555753' opacity='0.5'
                     d='M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z'
                   />
                 </svg>
                 <span>Download CSV ({currentCohort.length})</span>
-              </button>
-            </a>
-            <a href={nbiaLink} style={{ textDecoration: 'none' }} target='_'>
-              <button disabled={currentCohort.length === 0 || disableDownload} className={styles.tallButton}>
+              </div>
+            </Button>
+            <Button href={nbiaLink} variant='outline-dark' disabled={currentCohort.length === 0 || disableDownload}>
+              <div className={styles.tallButton}>
                 <svg
                   fill='currentColor'
-                  viewBox='0 0 16 16'
-                  height='3em'
-                  width='3em'
+                  viewBox='0 0 20 20'
+                  height='2em'
+                  width='2em'
                 >
                   <path
-                    fillRule='evenodd'
                     d='M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z'
                   />
                   <path
-                    fillRule='evenodd'
                     d='M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z'
                   />
                 </svg>
                 <span>{disableDownload ? 'Too Many Subjects' : 'Browse Files'}</span>
-              </button>
-            </a>
+              </div>
+            </Button>
           </div>
         </div>
       </header>
@@ -308,28 +311,26 @@ function CohortBuilder () {
         /* eslint-disable react/jsx-indent */
         /* eslint-disable indent */
         (showCollections === true)
-          ? <div className={styles.collection_table}>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Collection</th>
-                    <th>Description</th>
-                    <th>Count</th>
-                    {allFeatures}
+          ? <Table striped bordered>
+              <thead>
+                <tr>
+                  <th>Collection</th>
+                  <th>Description</th>
+                  <th>Count</th>
+                  {allFeatures}
+                </tr>
+              </thead>
+              <tbody>
+                {metadata.collections.map((col) =>
+                  <tr key={col.link}>
+                    <td><a href={col.link}>{col.name}</a></td>
+                    <td>{col.desc}</td>
+                    <td>{col.count}</td>
+                    {xFromFeatures(metadata.features, col.features)}
                   </tr>
-                </thead>
-                <tbody>
-                  {metadata.collections.map((col) =>
-                    <tr key={col.link}>
-                      <td><a href={col.link}>{col.name}</a></td>
-                      <td>{col.desc}</td>
-                      <td>{col.count}</td>
-                      {xFromFeatures(metadata.features, col.features)}
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                )}
+              </tbody>
+            </Table>
           : <></>
           /* eslint-enable react/jsx-indent */
           /* eslint-enable indent */

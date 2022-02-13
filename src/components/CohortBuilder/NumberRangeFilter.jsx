@@ -4,6 +4,11 @@ import BarChart from './BarChart'
 import PropTypes from 'prop-types'
 import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
+import CloseButton from 'react-bootstrap/CloseButton'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function NumberRangeFilter (props) {
   const [greaterThan, setGreaterThan] = useState('')
@@ -45,43 +50,51 @@ function NumberRangeFilter (props) {
   }
 
   return (
-    <div className={styles.form_box}>
-      <button className={styles.remove_button} onClick={() => props.remove(props.data.name)}>X</button>
+    <Form className={styles.form_box}>
+      <CloseButton className={styles.remove_button} onClick={() => props.remove(props.data.name)} />
       <h4>{props.data.name}</h4>
       <p>{props.data.label}</p>
       <div className={styles.boxes}>
-        <div className={styles.num_boxes}>
-          <label>Greater than or equal to</label>
-          <input
-            type='number'
-            value={greaterThan}
-            onChange={(e) => {
-              setDisableButton(false)
-              setGreaterThan(e.target.value)
-            }}
-            placeholder='Greater than...'
-          />
-        </div>
-        <div className={styles.num_boxes}>
-          <label>Less than or equal to</label>
-          <input
-            type='number'
-            value={lessThan}
-            onChange={(e) => {
-              setDisableButton(false)
-              setLessThan(e.target.value)
-            }}
-            placeholder='Less than...'
-          />
-        </div>
+        <Form.Group as={Row}>
+          <Form.Label column>Greater than or equal to</Form.Label>
+          <Col sm={5}>
+            <Form.Control
+              type='number'
+              value={greaterThan}
+              onChange={(e) => {
+                setDisableButton(false)
+                setGreaterThan(e.target.value)
+              }}
+              placeholder='Greater than...'
+            />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label column>Less than or equal to</Form.Label>
+          <Col sm={5}>
+            <Form.Control
+              type='number'
+              value={lessThan}
+              onChange={(e) => {
+                setDisableButton(false)
+                setLessThan(e.target.value)
+              }}
+              placeholder='Less than...'
+            />
+          </Col>
+        </Form.Group>
       </div>
-      <div className={styles.fetch_button}>
-        <button onClick={fetchData} disabled={disableButton}>Fetch Data</button>
-        {fetching === true ? <ThreeDots color='green' height={30} width={30} /> : <></>}
-        <span>{totalCount}</span>
-      </div>
+      <Form.Group as={Row}>
+        <Col>
+          <Button onClick={fetchData} disabled={disableButton}>Fetch Data</Button>
+        </Col>
+        <Col sm={4}>
+          {fetching === true ? <ThreeDots color='green' height={30} width={30} /> : <></>}
+          <span>{totalCount}</span>
+        </Col>
+      </Form.Group>
       <div>{summary}</div>
-    </div>
+    </Form>
   )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './DataTable.module.css'
 import PropTypes from 'prop-types'
+import Table from 'react-bootstrap/Table'
 
 function DataTable (props) {
   if (Object.prototype.hasOwnProperty.call(props.data, 'columns') === false) {
@@ -15,14 +15,14 @@ function DataTable (props) {
       {row.map((value, i) => <td key={'r' + ri + 'i' + i}>{value}</td>)}
     </tr>)
   return (
-    <table className={styles.data_table}>
+    <Table>
       <thead>
         <tr>{headers}</tr>
       </thead>
       <tbody>
         {rows}
       </tbody>
-    </table>
+    </Table>
   )
 }
 

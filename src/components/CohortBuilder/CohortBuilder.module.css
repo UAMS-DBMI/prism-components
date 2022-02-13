@@ -1,10 +1,7 @@
 .Beam_header {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   justify-content: space-evenly;
-  height: 14em;
-  padding-bottom: 1em;
   padding-top: 1em;
 }
 
@@ -36,7 +33,6 @@
 
 .filter_container {
   display: flex;
-  margin-top: 0.25em;
   align-items: center;
   justify-content: space-between;
   box-shadow: #8D44CE78 0px 0px 0.25em;
@@ -138,25 +134,23 @@ tr.filter_row:hover {
 }
 
 .tallButton {
-  padding: 1em;
-  height: 7em;
-  width: 7em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
+  height: 100%;
 }
 
 .header_section {
   display: flex;
   flex-direction: column;
-  width: 100%;
   background: #e9e9e9;
   color: #222222;
-  height: 100%;
   text-align: center;
   flex-basis: content;
   border-radius: 10px;
   padding: .5em;
+  justify-content: space-around;
 }
 
 .cohort_name {
@@ -218,15 +212,6 @@ tr.filter_row:hover {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-}
-
-.collection_table th {
-  text-align: left;
-  text-transform: capitalize;
-}
-
-.collection_table tbody tr:nth-child(odd){
-  background-color: #E2E6EE;
 }
 
 .col_feature {

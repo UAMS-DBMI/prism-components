@@ -3,6 +3,7 @@ import styles from './Redcapfilter.module.css'
 import NumberRangeFilter from './NumberRangeFilter'
 import RadioFilter from './RadioFilter'
 import PropTypes from 'prop-types'
+import CloseButton from 'react-bootstrap/CloseButton'
 
 function RedcapFilter (props) {
   if (props.data.type === 'calc') {
@@ -13,7 +14,7 @@ function RedcapFilter (props) {
 
   return (
     <div className={styles.form_box}>
-      <button onClick={() => props.remove(props.data.name)}>X</button>
+      <CloseButton onClick={() => props.remove(props.data.name)} />
       <span>Missing Type: {props.data.type}</span>
     </div>
   )

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
+import Table from 'react-bootstrap/Table'
 
 function BarChart (props) {
   let max = 0
@@ -12,13 +13,15 @@ function BarChart (props) {
   for (key in props.data) {
     const count = props.data[key].length
     rows.push(
-      <tr key={key}>
-        <th scope='row'>{key}</th>
-        <td style={{ '--size': 'calc(' + count + '/' + max + ')' }}>{count}</td>
+      <tr className={styles.graphRow} key={key}>
+        <td scope='row'>{key}</td>
+        <td className={styles.graphWrap}>
+          <div className={styles.graphBar} style={{ '--size': 'calc(' + count + '/' + max + ')' }}>{count}</div>
+        </td>
       </tr>)
   }
   return (
-    <table className={`${styles.my_charts_css} ${styles.bar} ${styles.show_labels}`}>
+    <Table className={`${styles.my_charts_css}`}>
       <thead>
         <tr>
           <th scope='col'>Age</th>
@@ -28,7 +31,7 @@ function BarChart (props) {
       <tbody>
         {rows}
       </tbody>
-    </table>
+    </Table>
   )
 }
 

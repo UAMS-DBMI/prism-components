@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styles from './CohortBuilder.module.css'
 import PropTypes from 'prop-types'
+import CloseButton from 'react-bootstrap/CloseButton'
+import Table from 'react-bootstrap/Table'
 
 function CategoryTableRow (props) {
   return (
@@ -120,9 +122,9 @@ function FilterBox (props) {
             </span>
           </div>
           <div className={styles.filter_results_container} style={{ display: (showBox ? 'flex' : 'none') }}>
-            <button style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()}>Close</button>
+            <CloseButton style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()} />
             <div className={styles.filter_list}>
-              <table className={styles.filter_table}>
+              <Table striped>
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -132,13 +134,13 @@ function FilterBox (props) {
                 <tbody>
                   {categoryFilters}
                 </tbody>
-              </table>
+              </Table>
             </div>
           </div>
           <div className={styles.filter_results_container} style={{ display: (textFilter !== '' ? 'flex' : 'none') }}>
-            <button style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()}>Close</button>
+            <CloseButton style={{ alignSelf: 'flex-end' }} onClick={() => clearAll()} />
             <div className={styles.filter_list}>
-              <table className={styles.filter_table}>
+              <Table striped>
                 <thead>
                   <tr>
                     <th>Category</th>
@@ -149,7 +151,7 @@ function FilterBox (props) {
                 <tbody>
                   {filters}
                 </tbody>
-              </table>
+              </Table>
             </div>
           </div>
         </div>

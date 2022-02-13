@@ -4,6 +4,11 @@ import barStyles from './mybarchart.module.css'
 import PropTypes from 'prop-types'
 import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
+import CloseButton from 'react-bootstrap/CloseButton'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function RadioFilter (props) {
   const startingFilters = {}
@@ -72,42 +77,52 @@ function RadioFilter (props) {
 
   function checkBoxes (choices) {
     return Object.keys(choices).map((choice) =>
-      <label key={choice} title={choice}>
-        <input
-          type='checkbox'
-          onClick={(e) => modifyFilter(choice, e.target.checked)}
-          readOnly checked={choices[choice].enabled}
-          value={choice}
-        />
-        {choices[choice].label}
-      </label>
-    )
-  }
-
-  function barBoxes (choices, max) {
-    return Object.keys(choices).map((choice) =>
-      <tr key={choice}>
-        <label title={choice}>
-          <input
+      <Form.Group key={choice} as={Row}>
+        <Form.Label column title={choice}>
+          {choices[choice].label}
+        </Form.Label>
+        <Col sm={1}>
+          <Form.Check
             type='checkbox'
             onClick={(e) => modifyFilter(choice, e.target.checked)}
             readOnly checked={choices[choice].enabled}
             value={choice}
           />
-          {choices[choice].label}
-        </label>
-        {
-          /* eslint-disable react/jsx-indent */
-          /* eslint-disable indent */
-          (choice in data)
-          ? <td style={{ '--size': 'calc(' + data[choice].length + '/' + max + ')' }}>
-            {data[choice].length}
-            </td>
-          : <></>
-          /* eslint-enable react/jsx-indent */
-          /* eslint-enable indent */
-        }
-      </tr>
+        </Col>
+      </Form.Group>
+    )
+  }
+
+  function barBoxes (choices, max) {
+    return Object.keys(choices).map((choice) =>
+      <div className={barStyles.graphRow} key={choice}>
+        <Form.Group as={Row}>
+          <Form.Label column title={choice}>
+            {choices[choice].label}
+          </Form.Label>
+          <Col sm={1}>
+            <Form.Check
+              type='checkbox'
+              onClick={(e) => modifyFilter(choice, e.target.checked)}
+              readOnly checked={choices[choice].enabled}
+              value={choice}
+            />
+          </Col>
+          <Col className={barStyles.graphWrap} sm={5}>
+            {
+            /* eslint-disable react/jsx-indent */
+            /* eslint-disable indent */
+            (choice in data)
+            ? <div className={barStyles.graphBar} style={{ '--size': 'calc(' + data[choice].length + '/' + max + ')' }}>
+              {data[choice].length}
+              </div>
+            : <></>
+            /* eslint-enable react/jsx-indent */
+            /* eslint-enable indent */
+            }
+          </Col>
+        </Form.Group>
+      </div>
     )
   }
 
@@ -126,36 +141,38 @@ function RadioFilter (props) {
     }
     totalCount = patientIds.size + ' unique subjects'
     input = (
-      <table className={`${barStyles.my_charts_css} ${barStyles.bar}`}>
-        <tbody>
-          {barBoxes(filters, max)}
-        </tbody>
-      </table>)
+      <div className={`${barStyles.my_charts_css} ${barStyles.bar}`}>
+        {barBoxes(filters, max)}
+      </div>)
   }
 
   return (
-    <div className={styles.form_box}>
-      <button className={styles.remove_button} onClick={() => props.remove(props.data.name)}>X</button>
+    <Form className={styles.form_box}>
+      <CloseButton className={styles.remove_button} onClick={() => props.remove(props.data.name)} />
       <h4>{props.data.name}</h4>
       <p>{props.data.label}</p>
-      <div className={styles.boxes}>
-        <label>
-          <input
+      <Form.Group as={Row}>
+        <Form.Label column>Toggle All</Form.Label>
+        <Col sm={1}>
+          <Form.Check
             type='checkbox'
             style={{ alignSelf: 'flex-start' }}
             onClick={() => toggleAll(!allSelect)}
             readOnly checked={allSelect}
           />
-          Toggle All
-        </label>
-        {input}
-      </div>
-      <div className={styles.fetch_button}>
-        <button onClick={handleFetch} disabled={disableButton}>Fetch Data</button>
-        {fetching === true ? <ThreeDots color='green' height={30} width={30} /> : <></>}
-        <span>{totalCount}</span>
-      </div>
-    </div>
+        </Col>
+      </Form.Group>
+      {input}
+      <Row>
+        <Col>
+          <Button onClick={handleFetch} disabled={disableButton}>Fetch Data</Button>
+        </Col>
+        <Col sm={4}>
+          {fetching === true ? <ThreeDots color='green' height={30} width={30} /> : <></>}
+          <span>{totalCount}</span>
+        </Col>
+      </Row>
+    </Form>
   )
 }
 
