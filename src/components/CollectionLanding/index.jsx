@@ -9,11 +9,12 @@ export default function CollectionLandingComponent (props) {
   const api = fallbackFetch(props.api)
   return (
     <ApiFetch.Provider value={api}>
-      <CollectionLanding collection_slug='my_first_collection' />
+      <CollectionLanding collection_slug={props.collection_slug} />
     </ApiFetch.Provider>
   )
 }
 
 CollectionLandingComponent.propTypes = {
-  api: PropTypes.func
+  api: PropTypes.func,
+  collection_slug: PropTypes.string.isRequired
 }
