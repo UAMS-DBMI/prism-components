@@ -6,7 +6,7 @@ import CornerstoneViewport from 'react-cornerstone-viewport'
 
 const File = (props) => {
   const [preview, setPreview] = useState(false)
-  const [fileIds, setFileIds] = useState(['wadouri:' + process.env.REACT_APP_API_URL + 'file/' + props.file._id])
+  const [fileIds, setFileIds] = useState(['wadouri:' + 'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id])
 
   const tools = [
     // Mouse
@@ -75,7 +75,7 @@ const File = (props) => {
         />
       } else if (props.file._content_type.indexOf('image/') >= 0) {
         return <img
-          src={process.env.REACT_APP_API_URL + 'file/' + props.file._id}
+          src={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}
           alt='File Preview'
           style={{ minWidth: '100%', height: '512px', flex: '1' }}
                />
@@ -83,7 +83,7 @@ const File = (props) => {
         return <video
           style={{ minWidth: '100%', height: '512px', flex: '1' }}
           controls
-          src={process.env.REACT_APP_API_URL + 'file/' + props.file._id}
+          src={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}
         >
           Your browser does not support the video tag.
         </video>
@@ -91,7 +91,7 @@ const File = (props) => {
         return <audio
           style={{ minWidth: '100%', flex: '1' }}
           controls
-          src={process.env.REACT_APP_API_URL + 'file/' + props.file._id}
+          src={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}
         >
           Your browser does not support the audio tag.
         </audio>
@@ -114,7 +114,7 @@ const File = (props) => {
         </button>
         </td>
         <td>{props.file._original_filename}</td>
-        <td><a target='_' href={process.env.REACT_APP_API_URL + 'file/' + props.file._id}>{props.file._id}</a></td>
+        <td><a target='_' href={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}>{props.file._id}</a></td>
         <td>{props.file.modality}</td>
         <td>{props.file._content_type}</td>
         <td><button onClick={() => setPreview(!preview)}>
@@ -169,8 +169,8 @@ function FacetBrowser () {
       redirect: 'follow',
       method: 'GET'
     }
-    const url = process.env.REACT_APP_API_URL + 'search/?'
-    const countUrl = process.env.REACT_APP_API_URL + 'search/count?'
+    const url = 'http://core-api.apps.dbmi.cloud/v1/' + 'search/?'
+    const countUrl = 'http://core-api.apps.dbmi.cloud/v1/' + 'search/count?'
     setLoading(true)
     const params = searchParams()
     const response = await fetch(url + params, opts)
@@ -247,7 +247,7 @@ function FacetBrowser () {
 */
 
   const items = itemsInCart.join(',')
-  const downloadLink = process.env.REACT_APP_API_URL + 'zip/zip?file_ids=' + items
+  const downloadLink = 'http://core-api.apps.dbmi.cloud/v1/' + 'zip/zip?file_ids=' + items
 
   return (
     <div className='App'>
@@ -271,7 +271,7 @@ function FacetBrowser () {
             onChange={updateFilter}
           />
           <SearchFilter
-            name='aries_subject_id'
+            name='prism_subject_id'
             onChange={updateFilter}
           />
           <CheckboxFilter
