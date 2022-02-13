@@ -9,7 +9,7 @@ function CollectionRow (props) {
       <td>{props.collection.collection_name}</td>
       <td>{props.collection.collection_slug}</td>
       <td>{props.collection.collection_doi}</td>
-      <td>0</td>
+      <td>{props.collection.file_count}</td>
     </tr>)
 }
 

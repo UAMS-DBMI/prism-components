@@ -1,19 +1,19 @@
 import React from 'react'
-import CollectionTable from './CollectionTable'
+import CollectionLanding from './CollectionLanding'
 import { ApiFetch, fallbackFetch } from '../../utils/ApiFetch'
 import PropTypes from 'prop-types'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 // From https://reactjs.org/docs/hooks-state.html
-export default function CollectionTableComponent (props) {
+export default function CollectionLandingComponent (props) {
   const api = fallbackFetch(props.api)
   return (
     <ApiFetch.Provider value={api}>
-      <CollectionTable />
+      <CollectionLanding collection_slug='my_first_collection' />
     </ApiFetch.Provider>
   )
 }
 
-CollectionTableComponent.propTypes = {
+CollectionLandingComponent.propTypes = {
   api: PropTypes.func
 }
