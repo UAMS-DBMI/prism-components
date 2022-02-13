@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "77970dd965361997013789c8fa0865d7",
+    "series_instance_uid": "1.2.3.4",
+    "modality": "CT",
+    "collection_name": "One",
+    "site_name": "Quasar",
+    "_original_filename": "1",
+    "_content_type": "",
+    "_location": "/storage/77970dd965361997013789c8fa0865d7"
+  },
+  {
+    "_id": "99017dec100cf08b3814ff20ce3eaf86",
+    "series_instance_uid": "1.2.3.5",
+    "modality": "CT",
+    "collection_name": "Two",
+    "site_name": "Quasar",
+    "_original_filename": "2",
+    "_content_type": "",
+    "_location": "/storage/99017dec100cf08b3814ff20ce3eaf86"
+  },
+  {
+    "_id": "365ece1e83b1fdb0a28c690ede7bb69c",
+    "series_instance_uid": "1.2.3.4",
+    "modality": "MR",
+    "collection_name": "One",
+    "site_name": "Quasar",
+    "_original_filename": "3",
+    "_content_type": "",
+    "_location": "/storage/365ece1e83b1fdb0a28c690ede7bb69c"
+  },
+  {
+    "_id": "b194a99b4da9dde9b5b8738aaddd9dd0",
+    "series_instance_uid": "1.2.3.4",
+    "modality": "US",
+    "collection_name": "One",
+    "site_name": "Quasar",
+    "_original_filename": "4",
+    "_content_type": "",
+    "_location": "/storage/b194a99b4da9dde9b5b8738aaddd9dd0"
+  },
+  {
+    "_id": "2c61fdda9354e302d00c1cdb79e25458",
+    "series_instance_uid": "1.2.3.4",
+    "modality": "RTSTRUCT",
+    "collection_name": "One",
+    "site_name": "Quasar",
+    "_original_filename": "5",
+    "_content_type": "",
+    "_location": "/storage/2c61fdda9354e302d00c1cdb79e25458"
+  }
+]

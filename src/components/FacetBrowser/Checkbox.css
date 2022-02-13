@@ -1,0 +1,18 @@
+.filterBox {
+  border: 1px black solid;
+  padding: 1ch;
+}
+
+.filterName {
+  text-transform: capitalize;
+  margin-top: 0px;
+}
+
+.filterRowContainer {
+  display: flex;
+}
+
+.filterRow {
+  display: flex;
+  justify-content: space-between;
+}

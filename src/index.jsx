@@ -8,6 +8,7 @@ import { render } from 'react-dom'
 import CollectionTableComponent from './components/CollectionTable'
 import CollectionLandingComponent from './components/CollectionLanding'
 import CohortBuilderComponent from './components/CohortBuilder'
+import FacetBrowserComponent from './components/FacetBrowser'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './site.css'
 import Nav from 'react-bootstrap/Nav'
@@ -27,6 +28,7 @@ render(
       <Nav>
         <Nav.Item><Nav.Link href='/collections'>Collections</Nav.Link></Nav.Item>
         <Nav.Item><Nav.Link href='/cohort_builder'>Cohort Builder</Nav.Link></Nav.Item>
+        <Nav.Item><Nav.Link href='/facet_browser'>Facet Browser</Nav.Link></Nav.Item>
       </Nav>
       <div className='App'>
         <Switch>
@@ -41,6 +43,9 @@ render(
           </Route>
           <Route path='/cohort_builder'>
             <CohortBuilderComponent api={testFetch} />
+          </Route>
+          <Route path='/facet_browser'>
+            <FacetBrowserComponent api={testFetch} />
           </Route>
           <Route path='/'>
             <div>PRISM React Components Testing Environment</div>

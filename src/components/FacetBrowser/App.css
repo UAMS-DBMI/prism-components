@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5ch;
+}
+
+.downloadButton {
+  align-self: flex-end;
+  height: 10ch;
+}
+
+.filterBar {
+  margin-left: 3ch;
+  margin-right: 3ch;
+}
