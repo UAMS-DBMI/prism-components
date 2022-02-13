@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import CollectionTableComponent from './components/CollectionTable'
 import CollectionLandingComponent from './components/CollectionLanding'
 import CohortBuilderComponent from './components/CohortBuilder'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const testFetch = async (url, opts = {}) => {
   if (Object.prototype.hasOwnProperty.call(opts, 'headers')) {

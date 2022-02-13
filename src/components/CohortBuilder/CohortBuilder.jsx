@@ -9,6 +9,7 @@ import FilesLogo from './files_logo.svg'
 import PersonLogo from './person_logo.svg'
 import { ApiFetch } from '../../utils/ApiFetch'
 import { ThreeDots } from 'react-loader-spinner'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 function CohortBuilder () {
   const [mustFilters, setMustFilters] = useState([])

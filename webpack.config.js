@@ -13,7 +13,7 @@ module.exports.devServer = {
         changeOrigin: true
       },
       '/api': {
-        target: 'http://localhost:8080/v1',
+        target: 'http://127.0.0.1:8080/v1',
         pathRewrite: { '^/api': '' },
         changeOrigin: true
       }
