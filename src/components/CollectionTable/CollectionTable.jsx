@@ -19,7 +19,7 @@ CollectionRow.propTypes = {
     collection_name: PropTypes.string,
     collection_slug: PropTypes.string,
     collection_doi: PropTypes.string,
-    file_count: PropTypes.int
+    file_count: PropTypes.number
   })
 }
 
@@ -37,8 +37,6 @@ export default function CollectionTable () {
         <p style={{ color: 'red' }}>Collection Manager API was unreachable</p>
       </>)
   }
-
-  console.log(data)
 
   return (
     <Table id='collections'>

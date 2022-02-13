@@ -36,7 +36,8 @@
     "bootstrap": "^5.1.3",
     "prop-types": "^15",
     "react-bootstrap": "^2.1.2",
-    "react-loader-spinner": "^5.1.3"
+    "react-loader-spinner": "^5.1.3",
+    "react-trix": "^0.9.0"
   },
   "repository": {
     "type": "git",
