@@ -1,6 +1,6 @@
 import React from 'react'
 import CollectionLanding from './CollectionLanding'
-import { ApiFetch, fallbackFetch } from '../../utils/ApiFetch'
+import { ApiFetch, fallbackFetch } from '../Utils/ApiFetch'
 import PropTypes from 'prop-types'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFetch } from '../../utils/useFetch'
+import { useFetch } from '../Utils/useFetch'
 import { ThreeDots } from 'react-loader-spinner'
 import PropTypes from 'prop-types'
 import Table from 'react-bootstrap/Table'
