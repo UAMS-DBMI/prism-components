@@ -67,7 +67,7 @@ export default function CollectionLanding (props) {
   return (
     <Container>
       <h1>{collection.collection_name}</h1>
-      <Tabs defaultActiveKey='description'>
+      <Tabs defaultActiveKey='description' mountOnEnter unmountOnExit>
         <Tab eventKey='description' title='Description'>
           {
             /* eslint-disable react/jsx-indent */
