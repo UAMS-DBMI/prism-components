@@ -5,6 +5,12 @@ import PropTypes from 'prop-types'
 import { TrixEditor } from 'react-trix'
 import { ApiFetch } from '../Utils/ApiFetch'
 import Button from 'react-bootstrap/Button'
+import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import VersionAccordion from './VersionAccordion'
 import 'trix/dist/trix'
 import 'trix/dist/trix.css'
 
@@ -58,28 +64,41 @@ export default function CollectionLanding (props) {
   }
 
   return (
-    <div>
+    <Container>
       <h1>{collection.collection_name}</h1>
-      {
-        /* eslint-disable react/jsx-indent */
-        /* eslint-disable indent */
-        (edit === false)
-          ? <>
-            <div dangerouslySetInnerHTML={{ __html: collection.collection_description }} />
-            <Button variant='outline-info' onClick={startEdit}>Edit</Button>
-            </>
-          : <>
-            <TrixEditor
-              onChange={handleChange}
-              onEditorReady={handleEditorReady}
-              value={collection.collection_description}
-            />
-            <Button variant='outline-success' onClick={save} disabled={change === false}>Save</Button>
-            </>
-        /* eslint-enable react/jsx-indent */
-        /* eslint-enable indent */
-      }
-    </div>
+      <Tabs defaultActiveKey='description'>
+        <Tab eventKey='description' title='Description'>
+          {
+            /* eslint-disable react/jsx-indent */
+            /* eslint-disable indent */
+            (edit === false)
+              ? <Row>
+                  <Col dangerouslySetInnerHTML={{ __html: collection.collection_description }} />
+                  <Col sm={1}>
+                    <Button variant='outline-info' onClick={startEdit}>Edit</Button>
+                  </Col>
+                </Row>
+              : <Row>
+                  <Col>
+                    <TrixEditor
+                      onChange={handleChange}
+                      onEditorReady={handleEditorReady}
+                      value={collection.collection_description}
+                    />
+                  </Col>
+                  <Col sm={1}>
+                    <Button variant='success' onClick={save} disabled={change === false}>Save</Button>
+                  </Col>
+                </Row>
+            /* eslint-enable react/jsx-indent */
+            /* eslint-enable indent */
+          }
+        </Tab>
+        <Tab eventKey='files' title='Files'>
+          <VersionAccordion collection_slug={props.collection_slug} />
+        </Tab>
+      </Tabs>
+    </Container>
   )
 }
 
