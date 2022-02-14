@@ -70,11 +70,11 @@ export default function FileUploader (props) {
       <h5>Upload Files to v{firstVersion}</h5>
       <Form onSubmit={onUploadClick}>
         <Form.Group controlId='file' className='mb-3'>
-          <Form.Label>Single File Upload</Form.Label>
+          <Form.Label>Files to Upload</Form.Label>
           <Form.Control type='file' onChange={onFileChange} required multiple />
         </Form.Group>
         <Form.Group className='mb-3' controlId='meta'>
-          <Form.Label>JSON Metadata</Form.Label>
+          <Form.Label>JSON Metadata for all files</Form.Label>
           <Form.Control as='textarea' rows={3} onChange={onMetaChange} required defaultValue='{}' />
         </Form.Group>
         <Button variant='primary' type='submit'>
