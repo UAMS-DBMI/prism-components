@@ -44,7 +44,7 @@ export default function VersionAccordion (props) {
   )
 
   return (
-    <Accordion defaultActiveKey={firstVersion}>
+    <Accordion defaultActiveKey={firstVersion} className='mt-3'>
       {AccordionItems}
     </Accordion>
   )

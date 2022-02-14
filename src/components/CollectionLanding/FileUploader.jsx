@@ -4,6 +4,7 @@ import { ThreeDots } from 'react-loader-spinner'
 import PropTypes from 'prop-types'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
 import { ApiFetch } from '../Utils/ApiFetch'
 
 export default function FileUploader (props) {
@@ -65,7 +66,7 @@ export default function FileUploader (props) {
   }
 
   return (
-    <>
+    <Row className='mt-3'>
       <h5>Upload Files to v{firstVersion}</h5>
       <Form onSubmit={onUploadClick}>
         <Form.Group controlId='file' className='mb-3'>
@@ -80,7 +81,7 @@ export default function FileUploader (props) {
           Upload
         </Button>
       </Form>
-    </>
+    </Row>
   )
 }
 
