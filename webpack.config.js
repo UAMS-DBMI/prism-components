@@ -12,6 +12,11 @@ module.exports.devServer = {
       pathRewrite: { '^/semapi': '' },
       changeOrigin: true
     },
+    '/coreapi': {
+      target: 'http://core-api.apps.dbmi.cloud/v1',
+      pathRewrite: { '^/coreapi': '' },
+      changeOrigin: true
+    },
     '/api': {
       target: 'http://127.0.0.1:8080/v1',
       pathRewrite: { '^/api': '' },
