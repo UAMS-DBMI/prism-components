@@ -73,13 +73,13 @@ export default function CollectionLanding (props) {
             /* eslint-disable react/jsx-indent */
             /* eslint-disable indent */
             (edit === false)
-              ? <Row>
+              ? <Row className='mt-3'>
                   <Col dangerouslySetInnerHTML={{ __html: collection.collection_description }} />
                   <Col sm={1}>
                     <Button variant='outline-info' onClick={startEdit}>Edit</Button>
                   </Col>
                 </Row>
-              : <Row>
+              : <Row className='mt-3'>
                   <Col>
                     <TrixEditor
                       onChange={handleChange}

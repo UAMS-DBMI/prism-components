@@ -3,6 +3,7 @@ import { useFetch } from '../Utils/useFetch'
 import { ThreeDots } from 'react-loader-spinner'
 import PropTypes from 'prop-types'
 import Table from 'react-bootstrap/Table'
+import Container from 'react-bootstrap/Container'
 
 function CollectionRow (props) {
   return (
@@ -39,18 +40,20 @@ export default function CollectionTable () {
   }
 
   return (
-    <Table id='collections'>
-      <thead>
-        <tr>
-          <th>Collection Name</th>
-          <th>Collection Slug</th>
-          <th>Collection DOI</th>
-          <th>File Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((row, i) => <CollectionRow key={i} collection={row} />)}
-      </tbody>
-    </Table>
+    <Container>
+      <Table id='collections'>
+        <thead>
+          <tr>
+            <th>Collection Name</th>
+            <th>Collection Slug</th>
+            <th>Collection DOI</th>
+            <th>File Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => <CollectionRow key={i} collection={row} />)}
+        </tbody>
+      </Table>
+    </Container>
   )
 }

@@ -4,6 +4,7 @@ import CheckboxFilter from './CheckboxFilter'
 import SearchFilter from './SearchFilter'
 import CornerstoneViewport from 'react-cornerstone-viewport'
 import PropTypes from 'prop-types'
+import Container from 'react-bootstrap/Container'
 
 const File = (props) => {
   const [preview, setPreview] = useState(false)
@@ -265,7 +266,7 @@ function FacetBrowser () {
   const downloadLink = 'http://core-api.apps.dbmi.cloud/v1/' + 'zip/zip?file_ids=' + items
 
   return (
-    <div className={styles.App}>
+    <Container className={styles.App}>
       <div className={styles.header}>
         <h1>PRISM Facet</h1>
         <a href={downloadLink}><button className={styles.downloadButton}>Download ({itemsInCart.length})</button></a>
@@ -304,7 +305,7 @@ function FacetBrowser () {
           </table>
         </div>
       </div>
-    </div>
+    </Container>
   )
 }
 

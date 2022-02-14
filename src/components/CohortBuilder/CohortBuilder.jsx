@@ -12,6 +12,7 @@ import { ThreeDots } from 'react-loader-spinner'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
+import Container from 'react-bootstrap/Container'
 
 function CohortBuilder () {
   const [mustFilters, setMustFilters] = useState([])
@@ -207,7 +208,7 @@ function CohortBuilder () {
   }, 0)
 
   return (
-    <div>
+    <Container>
       <header className={styles.Beam_header}>
         <div className={styles.header_section} style={{ flexGrow: 0 }}>
           <h6 className='display-6'>Repository Overview</h6>
@@ -361,7 +362,7 @@ function CohortBuilder () {
           {cannotFilterBoxes}
         </div>
       </div>
-    </div>
+    </Container>
   )
 }
 
