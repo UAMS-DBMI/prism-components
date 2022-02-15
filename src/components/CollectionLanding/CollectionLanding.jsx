@@ -12,6 +12,7 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import VersionAccordion from './VersionAccordion'
 import FileUploader from './FileUploader'
+import PathDBSync from './PathDBSync'
 import 'trix/dist/trix'
 import 'trix/dist/trix.css'
 
@@ -100,6 +101,9 @@ export default function CollectionLanding (props) {
         </Tab>
         <Tab eventKey='upload' title='Upload Files'>
           <FileUploader collection_slug={props.collection_slug} />
+        </Tab>
+        <Tab eventKey='sync' title='PathDB Sync'>
+          <PathDBSync collection_slug={props.collection_slug} />
         </Tab>
       </Tabs>
     </Container>
