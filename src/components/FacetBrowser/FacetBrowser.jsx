@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container'
 
 const File = (props) => {
   const [preview, setPreview] = useState(false)
-  const [fileIds, setFileIds] = useState(['wadouri:' + 'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id])
+  const [fileIds, setFileIds] = useState(['wadouri:' + '/coreapi/file/' + props.file._id])
 
   const tools = [
     // Mouse
@@ -80,7 +80,7 @@ const File = (props) => {
         return (
           /* eslint-disable react/jsx-closing-bracket-location */
           <img
-            src={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}
+            src={'/coreapi/file/' + props.file._id}
             alt='File Preview'
             style={{ minWidth: '100%', height: '512px', flex: '1' }}
           />)
@@ -90,7 +90,7 @@ const File = (props) => {
           <video
             style={{ minWidth: '100%', height: '512px', flex: '1' }}
             controls
-            src={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}
+            src={'/coreapi/file/' + props.file._id}
           >
             Your browser does not support the video tag.
           </video>)
@@ -99,7 +99,7 @@ const File = (props) => {
           <audio
             style={{ minWidth: '100%', flex: '1' }}
             controls
-            src={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}
+            src={'/coreapi/file/' + props.file._id}
           >
             Your browser does not support the audio tag.
           </audio>)
@@ -123,7 +123,7 @@ const File = (props) => {
           </button>
         </td>
         <td>{props.file._original_filename}</td>
-        <td><a target='_' href={'http://core-api.apps.dbmi.cloud/v1/' + 'file/' + props.file._id}>{props.file._id}</a></td>
+        <td><a target='_' href={'/coreapi/file/' + props.file._id}>{props.file._id}</a></td>
         <td>{props.file.modality}</td>
         <td>{props.file._content_type}</td>
         <td>
@@ -185,8 +185,8 @@ function FacetBrowser () {
       redirect: 'follow',
       method: 'GET'
     }
-    const url = 'http://core-api.apps.dbmi.cloud/v1/' + 'search/?'
-    const countUrl = 'http://core-api.apps.dbmi.cloud/v1/' + 'search/count?'
+    const url = '/coreapi/search/?'
+    const countUrl = '/coreapi/search/count?'
     setLoading(true)
     const params = searchParams()
     const response = await fetch(url + params, opts)
@@ -263,7 +263,7 @@ function FacetBrowser () {
 */
 
   const items = itemsInCart.join(',')
-  const downloadLink = 'http://core-api.apps.dbmi.cloud/v1/' + 'zip/zip?file_ids=' + items
+  const downloadLink = '/coreapi/zip/zip?file_ids=' + items
 
   return (
     <Container className={styles.App}>
