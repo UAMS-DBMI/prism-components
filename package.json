@@ -41,6 +41,7 @@
     "cornerstone-tools": "^6.0.6",
     "cornerstone-wado-image-loader": "^4.1.2",
     "dicom-parser": "^1.8.13",
+    "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "prop-types": "^15",
     "react-bootstrap": "^2.1.2",
