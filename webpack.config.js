@@ -6,6 +6,7 @@ const neutrino = require('neutrino')
 module.exports = neutrino().webpack()
 
 module.exports.devServer = {
+  /*
   proxy: {
     // '/semapi': {
     //   target: 'http://sui-demo-prism.apps.dbmi.cloud/api',
@@ -24,6 +25,21 @@ module.exports.devServer = {
     '/api': {
       target: 'http://127.0.0.1:8080/v1',
       pathRewrite: { '^/api': '' },
+      changeOrigin: true
+    }
+  },
+  */
+  proxy: {
+    '/semapi': {
+      target: 'http://127.0.0.1.nip.io:8080',
+      changeOrigin: true
+    },
+    '/coreapi': {
+      target: 'http://127.0.0.1.nip.io:8080',
+      changeOrigin: true
+    },
+    '/api': {
+      target: 'http://127.0.0.1.nip.io:8080',
       changeOrigin: true
     }
   },
